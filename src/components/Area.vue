@@ -50,13 +50,13 @@
 
       </el-header>
 
-      <el-main>
-        <div v-if="loading" class="loading">Loading...</div>
+      <el-main 
+        v-loading="loading"
+        element-loading-background="#0a132d">
 
         <div v-if="error" class="error">{{ error }}</div>
 
         <div v-if="areaData" class="content">
-          
           
 
           <el-row class="epic-container">
@@ -129,7 +129,8 @@
                             <div class="progress-line" v-bind:style="{'--percentage': project.progress + '%', '--percentage-with-in-progress': project.progressWithInProgress + '%', '--percentage-not-to-do': project.percentageNotToDo + '%'}">
                               <div></div>
                             </div>
-                            <div class="progress-percentage">{{ project.progress }}%</div>
+                            <div v-if="project.progress == 100" class="progress-percentage done"><i class="el-icon-trophy"></i>100%</div>
+                            <div v-else class="progress-percentage">{{ project.progress }}%</div>
                           </div>                    
                         </el-row>         
                       </el-main>           
@@ -225,199 +226,3 @@ export default {
   
 };
 </script>
-
-<style scoped>
-  .el-header {
-    line-height: 50px;
-    background: #11264a;
-    box-shadow: 0 0 12px 6px rgba(0,0,0,.3);
-    color: #64a0b0;
-  }
-
-  .header-logo-selector {
-    min-width: 500px;
-  }
-
-  .logo {
-    width: 180px;
-    margin-top: 6px;
-    vertical-align: top;
-    display: inline-block;
-    overflow: hidden;
-  }
-
-  .logo svg {
-    height: 40px;
-  }
-
-  .page-selector {
-    vertical-align: top;
-    display: inline-block;
-    margin-top: 3px;
-    margin-left: 10px;
-  }
-
-  .area-name {
-    cursor: pointer;
-    font-size: 14px;
-    color: #64a0b0;
-    outline: 0;
-  }
-
-  @media only screen and (max-width: 991px) {
-      .logo {
-          width: 20px;          
-      }
-
-      .header-logo-selector {
-        min-width: 335px;
-      }      
-  }
-
-  .epic-container {
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0;
-    display: flex;
-  }
-
-
-  .epic-container-column {
-    column-count: 3;
-    column-gap: 50px;
-    column-width: 300px;
-    padding: 0;
-    width: 100%;
-    padding-right: 30px;
-  }  
-
-  .epic-container-column__objective, .epic-container-column__project {
-    align-items: center;
-    display: flex;
-    height: 60px;
-    padding: 0 10px;
-    width: 100%;
-    -webkit-column-break-inside: avoid-column;
-    page-break-inside: avoid-column;
-    break-inside: avoid-column;    
-  }
-
-  .epic-container-column__project {
-    cursor: pointer;
-  }
-
-  .epic-container-column__project, .epic-container-column__project * {
-    outline: none !important;
-  }
-
-  .epic-container-column__project__internal {
-    padding: 0;
-  }
-
-  .epic-container-column__objective {
-    background: #11264a;
-    font-size: 18px;
-    height: 47px;
-    border-top: 10px solid #0a132d;
-    padding-top: 3px;
-    -webkit-column-break-after: avoid;
-    -webkit-break-after: avoid-column;
-    -moz-break-after: avoid-column;
-    break-after: avoid-column;
-    text-shadow: 1px 1px rgba(0,0,0,1);
-  }  
-
-
-  .epic-container-column__objective__name {
-    width: calc(100% - 50px);
-    float: left;
-    font-weight: bold;
-  }
-
-
-  .epic-container-column__objective__percentage {
-    float: right;
-    width:  50px;
-    text-align: right;
-  }  
-
-  .epic-container-column__project__title {
-    height: 15px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: calc(100% - 105px);
-    display: inline-block;
-  }
-
-  .epic-container-column__project__epic-counts {
-    width: 100px;
-    height: 15px;
-    display: inline-block;
-    text-align: right;
-    top: -3px;
-    position: relative;
-    font-size: 12px;
-    color: #64a0b0;
-    opacity: .6;
-  }
-
-  .progress-line {
-    width: calc(100% - 45px);
-    display: inline-block;
-    background: #11264a;
-    height: 4px;
-    border-radius: 2px;
-    position: relative;
-  }
-
-  .progress-line::after {
-    content: " ";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 4px;
-    border-radius: 2px;
-    width: var(--percentage);
-    background: #63bb61;
-  }
-
-  .progress-line::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 4px;
-    border-radius: 2px;
-    width: var(--percentage-with-in-progress);
-    background: url(../assets/stripe4.gif) center center repeat-x;
-    opacity: 0.6;
-  }  
-
-  .progress-line div {
-    display: block;
-    position: absolute;
-    right: 1px;
-    top: 1px;
-    height: 2px;
-    border-radius: 2px;
-    width: var(--percentage-not-to-do);
-    background: #060c1f;
-    max-width: calc(100% - 2px);
-  }
-
-  .progress-percentage {
-    position: relative;
-    top: 1px;
-    width: 40px;
-    display: inline-block;
-    text-align: right;
-    font-size: 12px;
-  }
-
-
-
-</style>

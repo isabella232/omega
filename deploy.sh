@@ -9,6 +9,10 @@ npm run build
 # navigate into the build output directory
 cd dist
 
+LC_ALL=C find . -type f -name '*.html' -exec sed -i '' 's/\/static\//\/omega-experimental\/static\//g' {} +
+LC_ALL=C find . -type f -name '*.js' -exec sed -i '' 's/\/static\//\/omega-experimental\/static\//g' {} +
+LC_ALL=C find . -type f -name '*.css' -exec sed -i '' 's/\/static\//\/omega-experimental\/static\//g' {} +
+
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
 
