@@ -1,4 +1,4 @@
-# omega4
+# Omega Experimental
 
 > A Vue.js project
 
