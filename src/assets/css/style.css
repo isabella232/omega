@@ -149,6 +149,11 @@ body {
   padding: 0;
 }
 
+.el-main {
+    overflow: initial !important;
+    width: 100%;
+}
+
 .project-popover__header {
   background: rgba(8, 19, 47, .6);
   padding: 15px 15px 0px 15px;
