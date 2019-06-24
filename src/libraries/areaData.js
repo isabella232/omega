@@ -16,13 +16,15 @@ export default class AreaData {
     end: "1975-01-01",
     launch: "Comments",
     progress: 0,
+    progressWithInProgress: 0,
     progressByEpics: 0,
     weeks: 0,
     weeksDone: 0,
     weeksInProgress: 0,
     weeksNotToDo: 0,    
     epicsCount: 0,
-    epicsDoneCount: 0
+    epicsDoneCount: 0,
+    percentageNotToDo: 0
   }
 
   objectives = []
@@ -141,7 +143,9 @@ export default class AreaData {
     });
 
     this.cycle.progress = Math.round((this.cycle.weeksDone / this.cycle.weeks) * 100);
+    this.cycle.progressWithInProgress = Math.round(((this.cycle.weeksDone + this.cycle.weeksInProgress) / this.cycle.weeks) * 100);
     this.cycle.progressByEpics = Math.round((this.cycle.epicsDoneCount / this.cycle.epicsCount) * 100);
+    this.cycle.percentageNotToDo = Math.round((this.cycle.weeksNotToDo / this.cycle.weeks) * 100);
   }
 
   static create(areaUrlIdentifier) {

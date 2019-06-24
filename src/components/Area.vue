@@ -37,7 +37,7 @@
               <el-dropdown-item command="overview">Overview</el-dropdown-item>
               <el-dropdown-item v-for="(area, areaId) in areas" :key="areaId" :command="areaId">{{ area.name }}</el-dropdown-item>
             </el-dropdown-menu>
-          </el-dropdown>
+          </el-dropdown>      
                  
         </el-col>
         <!-- <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
@@ -67,7 +67,6 @@
                   <apexchart class="global-objectives__chart" type="radialBar" height="100%" :options="options" :series="series"></apexchart>              
                 </div> 
                 <div class="global-objectives__details">
-                  <!-- <div class="global-objectives__details__title">Objectives</div> -->
                   <div>
                     <div class="global-objectives__detail" v-for="objective in areaData.objectives" :key="objective.name">
                       <div class="global-objectives__detail__progress">{{ objective.progress }}% <div class="global-objectives__detail__weeks"><strong>{{ objective.weeksDone }}</strong> of {{ objective.weeks }} weeks</div></div>
@@ -80,22 +79,40 @@
             <el-col :md="24" :lg="12">
                 <div class="global-objectives__progress">        
                   <div class="global-objectives__progress__row">
-                      <div class="global-objectives__progress_value">{{ areaData.cycle.progress }}%</div>                
-                      <div class="global-objectives__progress__title">Overall Progress</div>
-                      <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%' }"></div>
-                  </div>
-                  
-                  <div class="global-objectives__progress__row">
-                    <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} of {{ areaData.cycle.weeks }} weeks</div>                
-                    <div class="global-objectives__progress__title">Weeks Done</div>
-                    <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%' }"></div>
-                  </div>
 
-                  <div class="global-objectives__progress__row">
-                    <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }} epics</div>                
-                    <div class="global-objectives__progress__title">Epics Done</div>   
-                    <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progressByEpics + '%' }"></div>               
-                  </div>
+                    <div class="global-objectives__progress__big-container">
+                      <div class="global-objectives__progress__big">{{ areaData.cycle.progress }}%</div>                
+                      <div class="global-objectives__progress__big-title">Overall Progress</div>                      
+                    </div>
+
+                    <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%', '--percentage-with-in-progress': areaData.cycle.progressWithInProgress + '%', '--percentage-not-to-do': areaData.cycle.percentageNotToDo + '%'}">
+                      <div></div>  
+                    </div>                                          
+                  </div>                
+                  
+                  <el-row type="flex" justify="start">   
+                    <el-col :span="8">
+                      <div class="global-objectives__progress__value-container">
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} of {{ areaData.cycle.weeks }}</div>                
+                        <div class="global-objectives__progress__title">Weeks Done</div>
+                      </div>                      
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="global-objectives__progress__value-container">
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
+                        <div class="global-objectives__progress__title">Epics Done</div>   
+                      </div>                               
+                    </el-col>
+                    <el-col :span="8">
+                      <div class="global-objectives__progress__value-container">
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
+                        <div class="global-objectives__progress__title">Epics Done</div>   
+                      </div>                               
+                    </el-col>                                        
+                  </el-row>
+
+           
+                  
                 </div>                                 
             </el-col>
           </el-row>
@@ -341,7 +358,6 @@ export default {
           };
         });
 
-        console.dir(objectives);
 
         let longestObjective = objectives[0];
         objectives = objectives.map((objective, i) => {
@@ -365,9 +381,6 @@ export default {
 
         this.series2 = objectives.map((objective) => objective.trackLength);
         this.series = objectives.map((objective) => objective.progressOnTrack);
-
-        console.dir(objectives);
-
 
 
       } catch (e) {

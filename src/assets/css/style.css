@@ -322,24 +322,15 @@ body {
 .page-selector {
   vertical-align: top;
   display: inline-block;
-  margin-top: 3px;
+  margin-top: 4px;
   margin-left: 10px;
 }
 
 .area-name {
   cursor: pointer;
-  font-size: 14px;
-  color: #64a0b0;
+  font-size: 24px;
+  color: #fff;
   outline: 0;
-}
-
-@media only screen and (max-width: 991px) {
-  .logo {
-    width: 20px;
-  }
-  .header-logo-selector {
-    min-width: 335px;
-  }
 }
 
 .epic-container {
@@ -520,8 +511,7 @@ body {
 
 .global-objectives__progress {
     margin-left: 10px;
-    padding: 20px;
-    padding-top: 28px;
+    padding: 40px;
     box-sizing: border-box;
 } 
 
@@ -588,27 +578,46 @@ body {
     color: #64a0b0;
     display: inline-block;
     font-size: 12px;
+    opacity: .6;
 }
 
 .global-objectives__progress__row {
     position: relative;
 }
 
-.global-objectives__progress__bar {
-    position: absolute;
-    left: 230px;
-    top: 4px;    
+.global-objectives__progress__big-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.global-objectives__progress__big {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.global-objectives__progress__big-title {
+    font-size: 18px;
+    color: #64a0b0;    
+}
+
+.global-objectives__progress__value-container {
+    text-align: center;
+}
+
+.global-objectives__progress__bar {   
     width: calc(100% - 240px);    
-    height: 15px;
+    height: 20px;
+    margin-bottom: 34px;
+    margin-top: 27px;
 }
 
 .global-objectives__progress__bar:before, .global-objectives__progress__bar:after {
     content: " ";
     position: absolute;
     display: block;    
-    height: 15px;
-    border-radius: 1px;
-    width: var(--percentage);
+    height: 20px;
+    border-radius: 10px;
     background: #102648;
     width: 100%;
 }
@@ -618,14 +627,14 @@ body {
     background: #63bb61;    
 }
 
+
 .global-objectives__progress__title {
     font-size: 18px;
-    color: #64a0b0;    
+    color: #64a0b0;  
 }
 
 .global-objectives__progress_value {
     font-size: 24px;
-    margin-top: 27px;
 }
 
 
@@ -639,6 +648,41 @@ body {
     top: 50px;    
     left: -10px;
 }
+
+@media only screen and (max-width: 991px) {
+    .logo {
+      width: 20px;
+    }
+    .header-logo-selector {
+      min-width: 335px;
+    }
+  
+    .area-name {
+        font-size: 16px;
+    }
+
+    .global-objectives__progress {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .global-objectives__progress {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .global-objectives__container, .global-objectives__progress {
+        height: 245px;
+    }
+  
+    .global-objectives__progress_value {
+        font-size: 18px;
+    }
+  
+    .global-objectives__progress__title {
+        font-size: 14px;
+    }
+  }
 
 
 /* 
