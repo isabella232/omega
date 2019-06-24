@@ -27,6 +27,11 @@ export default class AreaData {
 
   objectives = []
 
+  constructor({ cycle, objectives } = {}) {
+    if (cycle) this.cycle = cycle;
+    if (objectives) this.objectives = objectives;
+  }
+
   async fetch(areaUrlIdentifier) {
     try {
       let response = await fetch(`https://ems-omega-data.herokuapp.com/${areaUrlIdentifier}`);  
@@ -36,6 +41,11 @@ export default class AreaData {
     }
 
     return this;
+  }
+
+  sortedByObjectiveLength() {
+    let objectives = [...this.objectives].sort((objectiveA, objectiveB) => { return objectiveA.weeks < objectiveB.weeks ? 1 : -1; });
+    return new AreaData({ cycle: this.cycle, objectives });
   }
 
   applyData(data) {

@@ -4,7 +4,7 @@
       <el-header height="50px">
 
       <el-row type="flex" class="row-bg" justify="start">
-        <el-col class="header-logo-selector" :span="8">
+        <el-col class="header-logo-selector" :span="24">
           <div class="logo">
             <svg viewBox="0 0 225 50">
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -40,12 +40,12 @@
           </el-dropdown>
                  
         </el-col>
-        <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
+        <!-- <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
           Global progress: {{ areaData.cycle.progress }}%
         </el-col>
         <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
           Epics: {{ areaData.cycle.epicsDoneCount }} / {{ areaData.cycle.epicsCount }}
-        </el-col>
+        </el-col> -->
       </el-row>
 
       </el-header>
@@ -58,6 +58,47 @@
 
         <div v-if="areaData" class="content">
           
+          <el-row class="global-objectives" type="flex" justify="start">   
+
+            <el-col :span="12" class="hidden-md-and-down">
+              <div class="global-objectives__container">
+                <div class="global-objectives__chart-container" style="transform: rotateY(180deg) rotateX(180deg)">
+                  <apexchart class="global-objectives__chart global-objectives__chart_background" type="radialBar" height="100%" :options="options2" :series="series2"></apexchart>
+                  <apexchart class="global-objectives__chart" type="radialBar" height="100%" :options="options" :series="series"></apexchart>              
+                </div> 
+                <div class="global-objectives__details">
+                  <!-- <div class="global-objectives__details__title">Objectives</div> -->
+                  <div>
+                    <div class="global-objectives__detail" v-for="objective in areaData.objectives" :key="objective.name">
+                      <div class="global-objectives__detail__progress">{{ objective.progress }}% <div class="global-objectives__detail__weeks"><strong>{{ objective.weeksDone }}</strong> of {{ objective.weeks }} weeks</div></div>
+                      <div class="global-objectives__detail__name">{{ objective.name }}</div>                                
+                    </div>                
+                  </div>
+                </div>       
+              </div>                         
+            </el-col>
+            <el-col :md="24" :lg="12">
+                <div class="global-objectives__progress">        
+                  <div class="global-objectives__progress__row">
+                      <div class="global-objectives__progress_value">{{ areaData.cycle.progress }}%</div>                
+                      <div class="global-objectives__progress__title">Overall Progress</div>
+                      <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%' }"></div>
+                  </div>
+                  
+                  <div class="global-objectives__progress__row">
+                    <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} of {{ areaData.cycle.weeks }} weeks</div>                
+                    <div class="global-objectives__progress__title">Weeks Done</div>
+                    <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%' }"></div>
+                  </div>
+
+                  <div class="global-objectives__progress__row">
+                    <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }} epics</div>                
+                    <div class="global-objectives__progress__title">Epics Done</div>   
+                    <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progressByEpics + '%' }"></div>               
+                  </div>
+                </div>                                 
+            </el-col>
+          </el-row>
 
           <el-row class="epic-container">
             <div class="epic-container-column">
@@ -163,7 +204,108 @@ export default {
       error: null,
       areaId: "",
       area: null,
-      areaName: ""
+      areaName: "",
+
+      options: {        
+        chart: {
+          
+        },       
+        plotOptions: {
+          radialBar: {
+            offsetY: 0,
+            startAngle: -50,
+            endAngle: 230,
+            track: {
+              show: true,
+              startAngle: undefined,
+              endAngle: undefined,
+              background: '#11264a',
+              strokeWidth: '0%',
+              opacity: 1,
+              margin: 5,
+            },            
+            hollow: {
+              margin: 50,
+              size: '40%',
+              background: 'transparent',
+              image: undefined,
+              dropShadow: {
+                enabled: false,
+                top: 0,
+                left: 0,
+                blur: 3,
+                opacity: 1
+              }                
+            },
+            dataLabels: {
+              name: {
+                  show: false,                      
+              },
+              value: {
+                  show: false,
+              },            
+            },
+          }  
+        },        
+        colors: ['#d3dc2d', '#56c5c9', '#6879ae'],        
+        labels: ['We drive business growth', 'We fight attrition', 'We are vertical agnostic'],
+        fill: {
+          opacity: 1,      
+        },        
+      },
+
+      options2: {        
+        chart: {
+          animations: {
+            enabled: false,
+          }
+        },       
+        plotOptions: {
+          radialBar: {
+            offsetY: 0,
+            startAngle: -50,
+            endAngle: 230,
+            track: {
+              show: true,
+              startAngle: undefined,
+              endAngle: undefined,
+              background: 'transparent',
+              strokeWidth: '0%',
+              opacity: 1,
+              margin: 5,
+            },            
+            hollow: {
+              margin: 50,
+              size: '40%',
+              background: 'transparent',
+              image: undefined,
+              dropShadow: {
+                enabled: false,
+                top: 0,
+                left: 0,
+                blur: 3,
+                opacity: 1
+              }                
+            },
+            dataLabels: {
+              name: {
+                  show: false,                      
+              },
+              value: {
+                  show: false,
+              },            
+            },
+          }  
+        },        
+        colors: ['#102649', '#102649', '#102649'],        
+        fill: {
+          opacity: 1,      
+        },        
+      },
+
+      series: [75,23,10],
+      series2: [100,40,25]
+      
     };
   },
   created() {
@@ -189,7 +331,45 @@ export default {
       this.loading = true;
 
       try {
-        this.areaData = await AreaData.create(this.area.urlIdentifier);
+        this.areaData = (await AreaData.create(this.area.urlIdentifier)).sortedByObjectiveLength();
+
+        let objectives = this.areaData.objectives.map((objective) => {
+          return {
+            name: objective.name,
+            weeks: objective.weeks,
+            progress: objective.progress
+          };
+        });
+
+        console.dir(objectives);
+
+        let longestObjective = objectives[0];
+        objectives = objectives.map((objective, i) => {
+          let relativeModifierToLongest = objective.weeks / longestObjective.weeks;
+
+          let trackLength = Math.ceil(relativeModifierToLongest * 100 * 1.1);
+          if (trackLength < 10) trackLength *= 3;
+          else if (trackLength < 50) trackLength *= 1.5;
+          if (trackLength > 100) trackLength = 100;
+
+          let progressOnTrack = Math.ceil(objective.progress / 100 * trackLength);
+
+          return {
+            name: objective.name,
+            weeks: objective.weeks,
+            progress: objective.progress,
+            trackLength,
+            progressOnTrack
+          };
+        });
+
+        this.series2 = objectives.map((objective) => objective.trackLength);
+        this.series = objectives.map((objective) => objective.progressOnTrack);
+
+        console.dir(objectives);
+
+
+
       } catch (e) {
         console.error('Error on loading Area data', e);
         this.error = "Error :(";

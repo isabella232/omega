@@ -295,6 +295,7 @@ body {
   background: #11264a;
   box-shadow: 0 0 12px 6px rgba(0, 0, 0, .3);
   color: #64a0b0;
+  z-index: 5;
 }
 
 .header-logo-selector {
@@ -492,3 +493,159 @@ body {
   display: inline-block;
   margin-right: 3px;
 }
+
+.global-objectives {
+    background: #060d21;
+    margin: -20px -20px 20px -20px;
+    border-bottom: 1px solid #0e1e4a;
+    box-shadow: inset 0 -10px 10px -6px rgba(0,0,0,.3);
+}
+
+.global-objectives__container, .global-objectives__progress {
+    height: 310px;
+    min-width: 580px;
+    position: relative;
+    margin: 20px;
+    background: #09132d;
+    border: 1px solid #0e1e4a;
+}
+
+.global-objectives__container {
+    margin-right: 10px;
+}
+
+.global-objectives__progress {
+    margin-left: 10px;
+    padding: 20px;
+    padding-top: 28px;
+    box-sizing: border-box;
+} 
+
+.global-objectives__chart-container {
+    width: 300px;
+    height: 350px;
+    position: absolute;
+    top: 0;    
+}
+
+.global-objectives__details {    
+    position: absolute;
+    left: 300px;
+    top: 45px;
+    width: calc(100% - 320px);
+}
+
+.global-objectives__details__title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.global-objectives__detail {
+    padding: 12px 0;                  
+}
+
+.global-objectives__detail .global-objectives__detail__progress:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 2px;
+    position: relative;
+    top: 1px;
+}
+
+.global-objectives__detail:nth-child(1) .global-objectives__detail__progress:before {
+    background: #d3dc2d;
+}
+
+.global-objectives__detail:nth-child(2) .global-objectives__detail__progress:before {
+    background: #56c5c9;
+}
+
+.global-objectives__detail:nth-child(3) .global-objectives__detail__progress:before {
+    background: #6879ae;
+}
+
+.global-objectives__detail__name {
+    font-size: 18px;      
+    color: #64a0b0; 
+    margin-top: 1px;      
+    margin-left: 33px;     
+}
+
+.global-objectives__detail__progress {    
+    display: inline-block;
+    margin-left: 2px;
+    font-size: 24px;
+}
+
+.global-objectives__detail__weeks {
+    color: #64a0b0;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.global-objectives__progress__row {
+    position: relative;
+}
+
+.global-objectives__progress__bar {
+    position: absolute;
+    left: 230px;
+    top: 4px;    
+    width: calc(100% - 240px);    
+    height: 15px;
+}
+
+.global-objectives__progress__bar:before, .global-objectives__progress__bar:after {
+    content: " ";
+    position: absolute;
+    display: block;    
+    height: 15px;
+    border-radius: 1px;
+    width: var(--percentage);
+    background: #102648;
+    width: 100%;
+}
+
+.global-objectives__progress__bar:after {
+    width: var(--percentage);
+    background: #63bb61;    
+}
+
+.global-objectives__progress__title {
+    font-size: 18px;
+    color: #64a0b0;    
+}
+
+.global-objectives__progress_value {
+    font-size: 24px;
+    margin-top: 27px;
+}
+
+
+.global-objectives__chart-container svg, .global-objectives__chart-container .apexcharts-canvas {
+    height: 350px !important;
+    min-height: 350px !important;
+}
+
+.global-objectives__chart {
+    position: absolute;
+    top: 50px;    
+    left: -10px;
+}
+
+
+/* 
+.global-objectives__labels div:nth-child(3) {
+    color: #4eb273;
+}
+
+.global-objectives__labels div:nth-child(2) {
+    color: #427f73;
+}
+
+.global-objectives__labels div:nth-child(1) {
+    color: #d3dc2d;
+} */
