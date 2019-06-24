@@ -142,6 +142,7 @@ body {
   margin-top: -50px;
   border-radius: 2px;
   max-height: 99%;
+  max-width: 99%;
   overflow: auto;
 }
 
@@ -171,7 +172,7 @@ body {
 }
 
 .project-popover__header__name {
-  width: 370px;
+  width: calc(100% - 110px);
   min-height: 25px;
   word-break: normal;
   text-align: left;
@@ -232,7 +233,6 @@ body {
 
 .project-popover__epics {
   padding: 15px;
-  width: 500px;
   overflow: hidden;
 }
 
@@ -248,7 +248,7 @@ body {
 }
 
 .project-popover__epic__name {
-  width: 300px;
+  width: calc(100% - 160px);
   word-break: normal;
   text-align: left;
 }
@@ -256,7 +256,7 @@ body {
 .project-popover__epic__effort {
   width: 70px;
   position: absolute;
-  left: 320px;
+  right: 80px;
   top: 0;
   color: #64a0b0;
 }
@@ -461,7 +461,7 @@ body {
   border-radius: 2px;
   width: var(--percentage-with-in-progress);
   background: url(../stripe4.gif) center center repeat-x;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .progress-line div {
@@ -508,7 +508,6 @@ body {
 
 .global-objectives__container, .global-objectives__progress {
     height: 310px;
-    min-width: 580px;
     position: relative;
     margin: 20px;
     background: #09132d;
