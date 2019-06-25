@@ -501,8 +501,9 @@ body {
     height: 310px;
     position: relative;
     margin: 20px;
-    background: #09132d;
-    border: 1px solid #0e1e4a;
+    background: rgba(9, 19, 45, .3);
+    border: 1px solid rgba(14, 30, 74, .5);
+    box-sizing: border-box;
 }
 
 .global-objectives__container {
@@ -608,7 +609,7 @@ body {
 .global-objectives__progress__bar {   
     width: calc(100% - 240px);    
     height: 20px;
-    margin-bottom: 34px;
+    margin-bottom: 35px;
     margin-top: 27px;
 }
 
@@ -662,8 +663,7 @@ body {
     }
 
     .global-objectives__progress {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px;
     }
 
     .global-objectives__progress {

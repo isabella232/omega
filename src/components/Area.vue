@@ -91,22 +91,28 @@
                   </div>                
                   
                   <el-row type="flex" justify="start">   
-                    <el-col :span="8">
+                    <el-col :span="6">
                       <div class="global-objectives__progress__value-container">
-                        <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} of {{ areaData.cycle.weeks }}</div>                
-                        <div class="global-objectives__progress__title">Weeks Done</div>
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.weeks }} wks</div>                
+                        <div class="global-objectives__progress__title">Estimation</div>
                       </div>                      
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :span="6">
                       <div class="global-objectives__progress__value-container">
-                        <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
-                        <div class="global-objectives__progress__title">Epics Done</div>   
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} wks</div>                
+                        <div class="global-objectives__progress__title">Done</div>
+                      </div>                      
+                    </el-col>                    
+                    <el-col :span="6">
+                      <div class="global-objectives__progress__value-container">
+                        <div class="global-objectives__progress_value">{{ areaData.cycle.weeksInProgress }} wks</div>                
+                        <div class="global-objectives__progress__title">In Progress</div>   
                       </div>                               
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :span="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
-                        <div class="global-objectives__progress__title">Epics Done</div>   
+                        <div class="global-objectives__progress__title">Epics</div>   
                       </div>                               
                     </el-col>                                        
                   </el-row>
