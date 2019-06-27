@@ -34,18 +34,12 @@
               {{ area.name }}<i class="el-icon-arrow-down el-icon--right"></i>
             </div>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="overview">Overview</el-dropdown-item>
+              <!-- <el-dropdown-item command="overview">Overview</el-dropdown-item> -->
               <el-dropdown-item v-for="(area, areaId) in areas" :key="areaId" :command="areaId">{{ area.name }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>      
                  
         </el-col>
-        <!-- <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
-          Global progress: {{ areaData.cycle.progress }}%
-        </el-col>
-        <el-col v-if="areaData" :span="6" style="min-width: 300px; text-align: right;">
-          Epics: {{ areaData.cycle.epicsDoneCount }} / {{ areaData.cycle.epicsCount }}
-        </el-col> -->
       </el-row>
 
       </el-header>
@@ -88,6 +82,21 @@
                     <div class="global-objectives__progress__bar" v-bind:style="{'--percentage': areaData.cycle.progress + '%', '--percentage-with-in-progress': areaData.cycle.progressWithInProgress + '%', '--percentage-not-to-do': areaData.cycle.percentageNotToDo + '%'}">
                       <div></div>  
                     </div>                                          
+
+                    <div class="global-objectives__time__bar">
+                      <div class="global-objectives__time__start">{{ areaData.cycle.startMonth }}</div>
+                      <div class="global-objectives__time__end">{{ areaData.cycle.endMonth }}</div>
+                      <div class="global-objectives__time__current label-left" 
+                        v-bind:style="{'--percentage': areaData.cycle.currentDayPercentage + '%'}"
+                        v-if="areaData.cycle.currentDayPercentage > 30">
+                        Optimal Progress <i class="el-icon-arrow-up"></i>
+                      </div>
+                      <div class="global-objectives__time__current label-right"
+                        v-bind:style="{'--percentage': areaData.cycle.currentDayPercentage + '%'}"
+                        v-if="areaData.cycle.currentDayPercentage <= 30">
+                        <i class="el-icon-arrow-up"></i> Optimal Progress
+                      </div>    
+                    </div>                             
                   </div>                
                   
                   <el-row type="flex" justify="start">   
@@ -112,7 +121,7 @@
                     <el-col :span="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
-                        <div class="global-objectives__progress__title">Epics</div>   
+                        <div class="global-objectives__progress__title">Epics Done</div>   
                       </div>                               
                     </el-col>                                        
                   </el-row>
@@ -131,7 +140,10 @@
                   <div class="epic-container-column__objective__name">{{ objective.name }}</div>
                   <div class="epic-container-column__objective__percentage">{{ objective.progress }}%</div>
                 </div>
-                <div v-for="project in objective.projects" class="epic-container-column__project" :key="project.name">
+                
+                <div v-for="project in objective.projects" 
+                  class="epic-container-column__project" 
+                  :key="project.name">
                   <el-popover
                     :ref="project.name + 'popover'"
                     placement="bottom"
@@ -198,10 +210,9 @@
                           </div>                    
                         </el-row>         
                       </el-main>           
-                    </el-container>                       
-                  
-                      
-                </div>                            
+                    </el-container>                                                              
+                </div>      
+
               </template>
             </div>
           </el-row>
@@ -387,8 +398,6 @@ export default {
 
         this.series2 = objectives.map((objective) => objective.trackLength);
         this.series = objectives.map((objective) => objective.progressOnTrack);
-
-
       } catch (e) {
         console.error('Error on loading Area data', e);
         this.error = "Error :(";

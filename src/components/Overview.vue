@@ -22,7 +22,8 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+    this.$router.push({ path: "/area/analytics" });
+    // this.fetchData();
   },
   watch: {    
     $route: "fetchData" // call again the method if the route changes

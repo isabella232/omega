@@ -360,6 +360,7 @@ body {
   -webkit-column-break-inside: avoid-column;
   page-break-inside: avoid-column;
   break-inside: avoid-column;
+  transition: all .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .epic-container-column__project {
@@ -512,7 +513,7 @@ body {
 
 .global-objectives__progress {
     margin-left: 10px;
-    padding: 40px;
+    padding: 35px 40px;
     box-sizing: border-box;
 } 
 
@@ -588,7 +589,6 @@ body {
 
 .global-objectives__progress__big-container {
     text-align: center;
-    margin-top: 15px;
 }
 
 .global-objectives__progress__big {
@@ -607,9 +607,8 @@ body {
 }
 
 .global-objectives__progress__bar {   
-    width: calc(100% - 240px);    
-    height: 20px;
-    margin-bottom: 35px;
+    width: 100%;    
+    height: 20px;    
     margin-top: 27px;
 }
 
@@ -628,6 +627,63 @@ body {
     background: #63bb61;    
 }
 
+
+.global-objectives__time__bar {
+    width: 100%;    
+    box-sizing: border-box;
+    height: 20px;
+    margin-top: 15px;
+    margin-bottom: 35px; 
+    position: relative;
+    margin-bottom: 35px;       
+    color: #64a0b0;   
+    font-size: 12px;
+}
+
+.global-objectives__time__bar:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    display: block;    
+    border-top: 2px dashed #64a0b0;
+    opacity: .6;
+}
+
+.global-objectives__time__start, .global-objectives__time__end {
+    position: absolute;
+    top: -6px;     
+    background:#070f24;
+}
+
+.global-objectives__time__start {
+    left: 0;    
+    padding-right: 8px;
+}
+
+.global-objectives__time__end {
+    right: 0;    
+    padding-left: 8px;
+}
+
+.global-objectives__time__current {
+    background: #070f24;
+    position: absolute;
+    top: 10px;
+    color: #fff;
+    font-weight: bold; 
+}
+
+.global-objectives__time__current.label-left {
+    text-align: right;
+    width: var(--percentage);    
+}
+
+.global-objectives__time__current.label-right {
+    text-align: left;
+    left: var(--percentage);
+}
 
 .global-objectives__progress__title {
     font-size: 18px;

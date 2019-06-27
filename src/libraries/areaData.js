@@ -1,3 +1,5 @@
+import { DatePicker } from "element-ui";
+
 export const STATUS = {
   TODO: 'todo',
   IN_PROGRESS: 'inprogress',
@@ -146,6 +148,12 @@ export default class AreaData {
     this.cycle.progressWithInProgress = Math.round(((this.cycle.weeksDone + this.cycle.weeksInProgress) / this.cycle.weeks) * 100);
     this.cycle.progressByEpics = Math.round((this.cycle.epicsDoneCount / this.cycle.epicsCount) * 100);
     this.cycle.percentageNotToDo = Math.round((this.cycle.weeksNotToDo / this.cycle.weeks) * 100);
+
+    this.cycle.startMonth = new Date(this.cycle.start).toLocaleString('en-us', { month: 'short' });
+    this.cycle.endMonth = new Date(this.cycle.end).toLocaleString('en-us', { month: 'short' });
+    this.cycle.daysFromStartOfCycle = Math.floor(Math.abs(new Date(this.cycle.start) - new Date()) / 1000 / 86400);
+    this.cycle.daysInCycle = Math.floor(Math.abs(new Date(this.cycle.start) - new Date(this.cycle.end)) / 1000 / 86400);
+    this.cycle.currentDayPercentage = Math.round((this.cycle.daysFromStartOfCycle / this.cycle.daysInCycle) * 100);    
   }
 
   static create(areaUrlIdentifier) {
