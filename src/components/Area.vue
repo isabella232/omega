@@ -34,7 +34,7 @@
               {{ area.name }}<i class="el-icon-arrow-down el-icon--right"></i>
             </div>
             <el-dropdown-menu slot="dropdown">
-              <!-- <el-dropdown-item command="overview">Overview</el-dropdown-item> -->
+              <el-dropdown-item command="overview">Overview</el-dropdown-item>
               <el-dropdown-item v-for="(area, areaId) in areas" :key="areaId" :command="areaId">{{ area.name }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>      
@@ -398,12 +398,12 @@ export default {
 
         this.series2 = objectives.map((objective) => objective.trackLength);
         this.series = objectives.map((objective) => objective.progressOnTrack);
+        this.loading = false;
       } catch (e) {
         console.error('Error on loading Area data', e);
         this.error = "Error :(";
-      }
-
-      this.loading = false;
+        this.loading = false;
+      }      
     },
 
     menuChanged(changeTo) {

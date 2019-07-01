@@ -363,6 +363,11 @@ body {
   transition: all .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
+.overview-page .epic-container-column__objective,
+.overview-page .epic-container-column__project {
+  height: 65px;   
+}
+
 .epic-container-column__project {
   cursor: pointer;
 }
@@ -389,6 +394,11 @@ body {
   text-shadow: 1px 1px rgba(0, 0, 0, 1);
 }
 
+.overview-page .epic-container-column__objective {
+  height: 52px;   
+  margin-bottom: 10px;
+}
+
 .epic-container-column__objective__name {
   width: calc(100% - 50px);
   float: left;
@@ -408,6 +418,12 @@ body {
   text-overflow: ellipsis;
   width: calc(100% - 105px);
   display: inline-block;
+}
+
+.epic-container-column__project__area {
+ font-size: 11px;
+ color: #64a0b0;
+ opacity: .6;
 }
 
 .epic-container-column__project__epic-counts {
@@ -495,7 +511,7 @@ body {
     background: #060d21;
     margin: -20px -20px 20px -20px;
     border-bottom: 1px solid #0e1e4a;
-    box-shadow: inset 0 -10px 10px -6px rgba(0,0,0,.3);
+    box-shadow: inset 0 -10px 10px -10px rgba(0,0,0,.3);
 }
 
 .global-objectives__container, .global-objectives__progress {
@@ -638,6 +654,7 @@ body {
     margin-bottom: 35px;       
     color: #64a0b0;   
     font-size: 12px;
+    opacity: .6;
 }
 
 .global-objectives__time__bar:before {
@@ -647,8 +664,7 @@ body {
     left: 0px;
     right: 0px;
     display: block;    
-    border-top: 2px dashed #64a0b0;
-    opacity: .6;
+    border-top: 2px dashed #64a0b0;    
 }
 
 .global-objectives__time__start, .global-objectives__time__end {
@@ -671,7 +687,7 @@ body {
     background: #070f24;
     position: absolute;
     top: 10px;
-    color: #fff;
+    /* color: #fff; */
     font-weight: bold; 
 }
 
