@@ -424,6 +424,7 @@ body {
  font-size: 11px;
  color: #64a0b0;
  opacity: .6;
+ padding-bottom: 1px;
 }
 
 .epic-container-column__project__epic-counts {

@@ -1,5 +1,5 @@
 import { DatePicker } from "element-ui";
-import areaConfigs from "../../config/areas";
+import { areaConfigs, areaOrderForOverview } from "../../config/areas";
 
 export const STATUS = {
   TODO: 'todo',
@@ -55,7 +55,7 @@ export default class AreaData {
     
       let devCycleData = { cycle: areaDataset[0].devCycleData, groups: []};
 
-      let areaNames = Object.keys(areaConfigs).map((index) => areaConfigs[index].name);
+      let areaNames = areaOrderForOverview.map((index) => areaConfigs[index].name);
 
       areaDataset = areaDataset.map((areaData, i) => {
         areaData.devCycleData.groups = areaData.devCycleData.groups.map((group) => {

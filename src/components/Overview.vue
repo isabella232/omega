@@ -226,7 +226,7 @@
 </template>
 
 <script>
-import areaConfigs from "../../config/areas";
+import { areaConfigs } from "../../config/areas";
 import AreaData from "../libraries/areaData"
 
 export default {

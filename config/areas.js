@@ -1,4 +1,4 @@
-export default {
+export const areaConfigs = {
 
     analytics: {
         name: 'Analytics',
@@ -14,11 +14,11 @@ export default {
         name: 'Channels',
         urlIdentifier: 'channels'
     },
-    
+
     cdp: {
         name: 'Customer Data Platform',
         urlIdentifier: 'cdp'
-    },
+    },    
 
     eme: {
         name: 'Enhanced Marketer Experience',
@@ -30,4 +30,6 @@ export default {
         urlIdentifier: 'pcm'
     }
 
-}
+};
+
+export const areaOrderForOverview = ['cdp', 'analytics', 'automation', 'channels', 'eme', 'pcm'];
