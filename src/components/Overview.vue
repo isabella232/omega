@@ -353,9 +353,10 @@ export default {
   },
   methods: {
     hidePopover(id) {
-      if (this.$refs[id] && this.$refs[id][0]) {        
-        this.$refs[id][0].doClose();
-      }      
+      if (!this.$refs[id] || !this.$refs[id][0]) return;
+
+      this.$refs[id][0].doClose();
+      setTimeout(() => { this.$refs[id][0].doClose(); }, 300);
     },
 
     async initialize() {
