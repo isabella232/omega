@@ -101,34 +101,32 @@
                   </div>                
                   
                   <el-row type="flex" justify="start">   
-                    <el-col :span="6">
+                    <el-col :xs="8" :sm="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.weeks }} wks</div>                
                         <div class="global-objectives__progress__title">Estimation</div>
                       </div>                      
                     </el-col>
-                    <el-col :span="6">
+                    <el-col :xs="8" :sm="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.weeksDone }} wks</div>                
                         <div class="global-objectives__progress__title">Done</div>
                       </div>                      
                     </el-col>                    
-                    <el-col :span="6">
+                    <el-col class="hidden-xs-only" :sm="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.weeksInProgress }} wks</div>                
                         <div class="global-objectives__progress__title">In Progress</div>   
                       </div>                               
                     </el-col>
-                    <el-col :span="6">
+                    <el-col :xs="8" :sm="6">
                       <div class="global-objectives__progress__value-container">
                         <div class="global-objectives__progress_value">{{ areaData.cycle.epicsDoneCount }} of {{ areaData.cycle.epicsCount }}</div>                
                         <div class="global-objectives__progress__title">Epics Done</div>   
                       </div>                               
                     </el-col>                                        
                   </el-row>
-
-           
-                  
+                            
                 </div>                                 
             </el-col>
           </el-row>
@@ -153,40 +151,42 @@
                     :visible-arrow="false"                    
                     popper-class="project-popover"
                     trigger="hover">
-                    <el-container>
-                      <el-main>
-                        <el-row class="project-popover__header">  
-                          <div class="project-popover__header__owner">{{ project.owner }}</div>
-                          <div class="project-popover__header__name">{{ project.name }}</div>
+                    <div v-on:click="hidePopover(project.name + 'popover')">
+                      <el-container>
+                        <el-main>
+                          <el-row class="project-popover__header">  
+                            <div class="project-popover__header__owner">{{ project.owner }}</div>
+                            <div class="project-popover__header__name">{{ project.name }}</div>
 
-                          <template v-if="project.weeks != project.weeksNotToDo">
-                            <div class="project-popover__header__progress">{{ project.progress + '%' }}</div>
-                            <div class="project-popover__header__weeks"><strong>{{ project.weeksDone }} </strong> of {{ project.weeks }} weeks</div>
-                          </template>
-                          <template v-else>
-                            <div class="project-popover__header__progress">Cancelled</div>
-                          </template>
-                        </el-row>
-                        <el-row class="project-popover__progress">
-                          <div v-if="project.weeks != project.weeksNotToDo" class="progress-line" v-bind:style="{'--percentage': project.progress + '%', '--percentage-with-in-progress': project.progressWithInProgress + '%', '--percentage-not-to-do': project.percentageNotToDo + '%'}">
-                            <div></div>
-                          </div>
-                        </el-row>
-                        <el-row class="project-popover__epics">
-                          <div v-bind:class="[{ 'project-popover__epic': true }, healthClassFromStatus(epic.status)]" v-for="epic in project.epics" :key="epic.name">
-                            <div class="project-popover__epic__name">{{ epic.name }}</div>
-                            <div class="project-popover__epic__effort">
-                              {{ epic.effort }}
-                              <span v-if="epic.effort <= 1">week</span>
-                              <span v-else>weeks</span>
+                            <template v-if="project.weeks != project.weeksNotToDo">
+                              <div class="project-popover__header__progress">{{ project.progress + '%' }}</div>
+                              <div class="project-popover__header__weeks"><strong>{{ project.weeksDone }} </strong> of {{ project.weeks }} weeks</div>
+                            </template>
+                            <template v-else>
+                              <div class="project-popover__header__progress">Cancelled</div>
+                            </template>
+                          </el-row>
+                          <el-row class="project-popover__progress">
+                            <div v-if="project.weeks != project.weeksNotToDo" class="progress-line" v-bind:style="{'--percentage': project.progress + '%', '--percentage-with-in-progress': project.progressWithInProgress + '%', '--percentage-not-to-do': project.percentageNotToDo + '%'}">
+                              <div></div>
                             </div>
-                            <div class="project-popover__epic__status">
-                              {{ displayStatus(epic.status) }}
-                            </div>
-                          </div>         
-                        </el-row>         
-                      </el-main>           
-                    </el-container>                       
+                          </el-row>
+                          <el-row class="project-popover__epics">
+                            <div v-bind:class="[{ 'project-popover__epic': true }, healthClassFromStatus(epic.status)]" v-for="epic in project.epics" :key="epic.name">
+                              <div class="project-popover__epic__name">{{ epic.name }}</div>
+                              <div class="project-popover__epic__effort">
+                                {{ epic.effort }}
+                                <span v-if="epic.effort <= 1">week</span>
+                                <span v-else>weeks</span>
+                              </div>
+                              <div class="project-popover__epic__status">
+                                {{ displayStatus(epic.status) }}
+                              </div>
+                            </div>         
+                          </el-row>         
+                        </el-main>           
+                      </el-container>  
+                    </div>
                   </el-popover>                    
                     <el-container >
                       <el-main v-popover="project.name + 'popover'" class="epic-container-column__project__internal">
@@ -352,6 +352,12 @@ export default {
     $route: "initialize" // call again the method if the route changes
   },
   methods: {
+    hidePopover(id) {
+      if (this.$refs[id] && this.$refs[id][0]) {        
+        this.$refs[id][0].doClose();
+      }      
+    },
+
     async initialize() {
       await this.fetchData();
     },

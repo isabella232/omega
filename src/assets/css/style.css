@@ -746,6 +746,8 @@ body {
 
     .global-objectives__container, .global-objectives__progress {
         height: 245px;
+        background: none;
+        border: none;
     }
   
     .global-objectives__progress_value {
