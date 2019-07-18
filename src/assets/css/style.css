@@ -9,6 +9,11 @@ body {
   padding: 0;
   margin: 0;
   font-size: 14px;
+  height: 100%;
+}
+
+#app {
+  height: 100%;
 }
 
 .color1 {
