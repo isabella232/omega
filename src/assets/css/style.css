@@ -621,7 +621,7 @@ body {
 .global-objectives__details-gt4 > div {
   column-count: 2;
   column-gap: 20px;
-  /* column-width: 100px; */
+  column-fill: auto;
   height: 270px;
 }
 
