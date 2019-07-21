@@ -67,8 +67,8 @@ export default function createStore(router) {
                 commit('loadingOn')
 
                 try {
-                    // let response = await fetch(`https://ems-omega-data.herokuapp.com/overview`)
-                    let response = await fetch(`http://localhost:3131/overview`)
+                    let response = await fetch(`https://ems-omega-data.herokuapp.com/overview`)
+                    // let response = await fetch(`http://localhost:3131/overview`)
                     let areaDataset = await response.json()
 
                     let areaData = {}
