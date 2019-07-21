@@ -78,29 +78,29 @@ export default function createStore(router) {
 
 
                     // Overview
-                    let devCycleData = { cycle: areaDataset[0].devCycleData, groups: [] };
+                    let devCycleData = { cycle: areaDataset[0].devCycleData.cycle, objectives: [] };
 
                     areaDataset = areaDataset.map((areaData, i) => {
-                        areaData.devCycleData.groups = areaData.devCycleData.groups.map((group) => {
-                            group.projects = group.projects.map((project) => {
+                        areaData.devCycleData.objectives = areaData.devCycleData.objectives.map((objective) => {
+                            objective.projects = objective.projects.map((project) => {
                                 project.area = state.pages.all.find((page) => page.id === areaOrderInBackend[i]).name;
                                 return project;
                             });
 
-                            return group;
+                            return objective;
                         });
 
                         return areaData;
                     });
 
-                    let areasGroups = areaDataset.map((areaData) => areaData.devCycleData.groups);
-                    devCycleData.groups = areasGroups.reduce((acc, areaGroups) => {
-                        areaGroups.forEach((areaGroup) => {
-                            let indexInAcc = acc.findIndex((el) => el.objective === areaGroup.objective);
+                    let areasObjectives = areaDataset.map((areaData) => areaData.devCycleData.objectives);
+                    devCycleData.objectives = areasObjectives.reduce((acc, areaObjectives) => {
+                        areaObjectives.forEach((areaObjective) => {
+                            let indexInAcc = acc.findIndex((el) => el.objective === areaObjective.objective);
                             if (indexInAcc < 0) {
-                                acc.push(areaGroup);
+                                acc.push(areaObjective);
                             } else {
-                                acc[indexInAcc].projects = acc[indexInAcc].projects.concat(areaGroup.projects);
+                                acc[indexInAcc].projects = acc[indexInAcc].projects.concat(areaObjective.projects);
                             }
                         });
 
@@ -108,8 +108,6 @@ export default function createStore(router) {
                     }, []);
 
                     areaData.overview = new AreaData().applyData(devCycleData);
-
-
 
                     commit('setAreaData', areaData)
                 } catch (e) {

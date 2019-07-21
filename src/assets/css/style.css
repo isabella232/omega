@@ -553,6 +553,28 @@ body {
     width: calc(100% - 320px);
 }
 
+.global-objectives__details.global-objectives__details-1 {
+    top: 118px;
+}
+
+.global-objectives__details.global-objectives__details-2 {
+    top: 80px;
+}
+
+.global-objectives__details.global-objectives__details-3 {
+    top: 45px;
+}
+
+.global-objectives__details.global-objectives__details-4 {
+    top: 21px;
+}
+
+.global-objectives__details.global-objectives__details-gt4 {
+    top: 21px;
+    left: 290px;
+    width: calc(100% - 290px);
+}
+
 .global-objectives__details__title {
     font-size: 24px;
     font-weight: bold;
@@ -560,6 +582,26 @@ body {
 
 .global-objectives__detail {
     padding: 12px 0;                  
+}
+
+.global-objectives__details-1 .global-objectives__detail {
+    padding: 12px 0;
+}
+
+.global-objectives__details-2 .global-objectives__detail {
+    padding: 12px 0;
+}
+
+.global-objectives__details-3 .global-objectives__detail {
+    padding: 12px 0;
+}
+
+.global-objectives__details-4 .global-objectives__detail {
+    padding: 8px 0;
+}
+
+.global-objectives__details-gt4 .global-objectives__detail {
+    padding: 8px 0;
 }
 
 .global-objectives__detail .global-objectives__detail__progress:before {
@@ -571,6 +613,23 @@ body {
     border-radius: 2px;
     position: relative;
     top: 1px;
+}
+
+.global-objectives__details-gt4 .global-objectives__detail .global-objectives__detail__progress:before {
+  top: 3px;
+}
+
+.global-objectives__details-gt4 > div {
+  column-count: 2;
+  column-gap: 20px;
+  /* column-width: 100px; */
+  height: 270px;
+}
+
+.global-objectives__details-gt4 .global-objectives__detail {
+  -webkit-column-break-inside: avoid-column;
+  page-break-inside: avoid-column;
+  break-inside: avoid-column;
 }
 
 .global-objectives__detail:nth-child(1) .global-objectives__detail__progress:before {
@@ -585,6 +644,26 @@ body {
     background: #6879ae;
 }
 
+.global-objectives__detail:nth-child(4) .global-objectives__detail__progress:before {
+  background: #3a5684;
+}
+
+.global-objectives__detail:nth-child(5) .global-objectives__detail__progress:before {
+  background: #40877e;
+}
+
+.global-objectives__detail:nth-child(6) .global-objectives__detail__progress:before {
+  background: #87991a;
+}
+
+.global-objectives__detail:nth-child(7) .global-objectives__detail__progress:before {
+  background: #efab00;
+}
+
+.global-objectives__detail:nth-child(8) .global-objectives__detail__progress:before {
+  background: #d8d8d8;
+}
+
 .global-objectives__detail__name {
     font-size: 18px;      
     color: #64a0b0; 
@@ -592,10 +671,18 @@ body {
     margin-left: 33px;     
 }
 
+.global-objectives__details-gt4 .global-objectives__detail__name {
+  font-size: 17px;
+}
+
 .global-objectives__detail__progress {    
     display: inline-block;
     margin-left: 2px;
     font-size: 24px;
+}
+
+.global-objectives__details-gt4 .global-objectives__detail__progress {
+  font-size: 20px;
 }
 
 .global-objectives__detail__weeks {
@@ -622,6 +709,10 @@ body {
 .global-objectives__progress__big-title {
     font-size: 18px;
     color: #64a0b0;    
+}
+
+.global-objectives__progress-gt4 .global-objectives__progress__big-title {
+  font-size: 17px;
 }
 
 .global-objectives__progress__value-container {
@@ -712,8 +803,16 @@ body {
     color: #64a0b0;  
 }
 
+.global-objectives__progress-gt4 .global-objectives__progress__title {
+  font-size: 17px;
+}
+
 .global-objectives__progress_value {
     font-size: 24px;
+}
+
+.global-objectives__progress-gt4 .global-objectives__progress_value {
+  font-size: 20px;
 }
 
 

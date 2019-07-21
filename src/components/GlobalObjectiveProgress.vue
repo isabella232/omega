@@ -1,5 +1,5 @@
 <template>
-  <div class="global-objectives__progress">
+  <div class="global-objectives__progress" :class="{ 'global-objectives__progress-gt4': this.objectives.length > 4}">
     <div class="global-objectives__progress__row">
       <div class="global-objectives__progress__big-container">
         <div class="global-objectives__progress__big">{{ cycle.progress }}%</div>
@@ -69,6 +69,6 @@
 export default {
   name: 'global-objective-progress',
 
-  props: ['cycle']
+  props: ['cycle', 'objectives']
 };
 </script>

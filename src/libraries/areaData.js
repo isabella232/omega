@@ -14,7 +14,6 @@ export default class AreaData {
     start: "1975-01-01",
     delivery: "1975-01-01",
     end: "1975-01-01",
-    launch: "Comments",
     progress: 0,
     progressWithInProgress: 0,
     progressByEpics: 0,
@@ -37,7 +36,7 @@ export default class AreaData {
   applyData(data) {
     Object.assign(this.cycle, data.cycle);
 
-    this.objectives = data.groups.map((objective) => {
+    this.objectives = data.objectives.map((objective) => {
       let preparedObjective = {
         name: objective.objective,
         epicsCount: 0,
@@ -93,10 +92,10 @@ export default class AreaData {
           }
         });
 
-        preparedProject.progress = Math.round((preparedProject.weeksDone / preparedProject.weeks) * 100);
-        preparedProject.progressWithInProgress = Math.round(((preparedProject.weeksDone + preparedProject.weeksInProgress) / preparedProject.weeks) * 100);
-        preparedProject.progressByEpics = Math.round((preparedProject.epicsDoneCount / preparedProject.epicsCount) * 100);
-        preparedProject.percentageNotToDo = Math.round((preparedProject.weeksNotToDo / preparedProject.weeks) * 100);
+        preparedProject.progress = Math.round((preparedProject.weeksDone / preparedProject.weeks) * 100) || 0;
+        preparedProject.progressWithInProgress = Math.round(((preparedProject.weeksDone + preparedProject.weeksInProgress) / preparedProject.weeks) * 100) || 0;
+        preparedProject.progressByEpics = Math.round((preparedProject.epicsDoneCount / preparedProject.epicsCount) * 100) || 0;
+        preparedProject.percentageNotToDo = Math.round((preparedProject.weeksNotToDo / preparedProject.weeks) * 100) || 0;
 
         preparedObjective.weeks += preparedProject.weeks;
         preparedObjective.weeksDone += preparedProject.weeksDone;
@@ -119,20 +118,20 @@ export default class AreaData {
       this.cycle.epicsCount += preparedObjective.epicsCount;
       this.cycle.epicsDoneCount += preparedObjective.epicsDoneCount;
 
-      preparedObjective.progress = Math.round((preparedObjective.weeksDone / preparedObjective.weeks) * 100);
-      preparedObjective.progressWithInProgress = Math.round(((preparedObjective.weeksDone + preparedObjective.weeksInProgress) / preparedObjective.weeks) * 100);
-      preparedObjective.progressByEpics = Math.round((preparedObjective.epicsDoneCount / preparedObjective.epicsCount) * 100);
-      preparedObjective.percentageNotToDo = Math.round((preparedObjective.weeksNotToDo / preparedObjective.weeks) * 100);
+      preparedObjective.progress = Math.round((preparedObjective.weeksDone / preparedObjective.weeks) * 100) || 0;
+      preparedObjective.progressWithInProgress = Math.round(((preparedObjective.weeksDone + preparedObjective.weeksInProgress) / preparedObjective.weeks) * 100) || 0;
+      preparedObjective.progressByEpics = Math.round((preparedObjective.epicsDoneCount / preparedObjective.epicsCount) * 100) || 0;
+      preparedObjective.percentageNotToDo = Math.round((preparedObjective.weeksNotToDo / preparedObjective.weeks) * 100) || 0;
 
       return preparedObjective;
     });
 
     this.objectives = [...this.objectives].sort((objectiveA, objectiveB) => { return objectiveA.weeks < objectiveB.weeks ? 1 : -1; });
 
-    this.cycle.progress = Math.round((this.cycle.weeksDone / this.cycle.weeks) * 100);
-    this.cycle.progressWithInProgress = Math.round(((this.cycle.weeksDone + this.cycle.weeksInProgress) / this.cycle.weeks) * 100);
-    this.cycle.progressByEpics = Math.round((this.cycle.epicsDoneCount / this.cycle.epicsCount) * 100);
-    this.cycle.percentageNotToDo = Math.round((this.cycle.weeksNotToDo / this.cycle.weeks) * 100);
+    this.cycle.progress = Math.round((this.cycle.weeksDone / this.cycle.weeks) * 100) || 0;
+    this.cycle.progressWithInProgress = Math.round(((this.cycle.weeksDone + this.cycle.weeksInProgress) / this.cycle.weeks) * 100) || 0;
+    this.cycle.progressByEpics = Math.round((this.cycle.epicsDoneCount / this.cycle.epicsCount) * 100) || 0;
+    this.cycle.percentageNotToDo = Math.round((this.cycle.weeksNotToDo / this.cycle.weeks) * 100) || 0;
 
     this.cycle.startMonth = new Date(this.cycle.start).toLocaleString('en-us', { month: 'short' });
     this.cycle.endMonth = new Date(this.cycle.end).toLocaleString('en-us', { month: 'short' });

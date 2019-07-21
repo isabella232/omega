@@ -1,0 +1,1452 @@
+[
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01",
+                "launch": "Comments"
+            },
+            "groups": [
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "Data Platform, Integration",
+                            "name": "Real-time Web Extend Events trigger RTI Automation",
+                            "startDate": "",
+                            "projectLength": "6",
+                            "epics": [
+                                {
+                                    "name": "Web Extend Purchase triggers RTI",
+                                    "status": "done",
+                                    "effort": 2.5
+                                },
+                                {
+                                    "name": "Web Extend Product View triggers RTI",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Web Extend Category View triggers RTI",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Web Extend Cart Update triggers RTI",
+                                    "status": "postponed",
+                                    "effort": 2.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Integration",
+                            "name": "CRM Ads scalable contact deletion from audiences",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "CRM Ads scalable contact deletion from audiences",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Data Platform",
+                            "name": "Fix inconsistent data on Data Platform",
+                            "startDate": "",
+                            "projectLength": "3.1",
+                            "epics": [
+                                {
+                                    "name": "Fix inconsistent campaign data in DP to support Behaviour segmentation",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Contact data deletion from Data Platform",
+                                    "status": "postponed",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Additional streams in OpenData",
+                                    "status": "done",
+                                    "effort": 0.1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Integration",
+                            "name": "API Gateway is fully rolled out",
+                            "startDate": "",
+                            "projectLength": "4",
+                            "epics": [
+                                {
+                                    "name": "Customer-routing",
+                                    "status": "done",
+                                    "effort": 3.5
+                                },
+                                {
+                                    "name": "Roll-out",
+                                    "status": "postponed",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Integration, RDS",
+                            "name": "Supporting the latest version for integrated technologies",
+                            "startDate": "",
+                            "projectLength": "4.5",
+                            "epics": [
+                                {
+                                    "name": "Magento 2.3 support",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Magento Enterprise support",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "RDS MySQL8 Connnector",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Integration",
+                            "name": "Product catalog load handover from Predict",
+                            "startDate": "",
+                            "projectLength": "5",
+                            "epics": [
+                                {
+                                    "name": "Product catalog csv load is detached from Predict  - dark launch",
+                                    "status": "done",
+                                    "effort": 4
+                                },
+                                {
+                                    "name": "Product catalog csv load is detached from Predict for Shopify customers",
+                                    "status": "postponed",
+                                    "effort": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "Data Platform, RDS",
+                            "name": "Customer Data Platform supports verticalisation",
+                            "startDate": "",
+                            "projectLength": "7.5",
+                            "epics": [
+                                {
+                                    "name": "Additional heavy tactics based on long-term solution",
+                                    "status": "done",
+                                    "effort": 1.5
+                                },
+                                {
+                                    "name": "Web channel can resolve contact identifier through Data Platform",
+                                    "status": "postponed",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Event History Filtering for Runtastic & Tipico",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Load additional sales data from SI into Data Platform",
+                                    "status": "postponed",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Data order can be defined in RDS personalisation",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "Integration",
+                            "name": "Salesforce Commerce Cloud plug-in discovery",
+                            "startDate": "",
+                            "projectLength": "1",
+                            "epics": [
+                                {
+                                    "name": "Salesforce Commerce Cloud plug-in discovery",
+                                    "status": "cancelled",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Data Platform",
+                            "name": "Product personalisation in Web Extend triggered RTI programs",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Product personalisation in Web Extend triggered RTI programs",
+                                    "status": "cancelled",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "RDS",
+                            "name": "Scale up for Allegro",
+                            "startDate": "",
+                            "projectLength": "4.5",
+                            "epics": [
+                                {
+                                    "name": "Reduce Allegro DB load by advanced retry mechanism in the pub/sub importer",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Discover personalisation possibilities on DP",
+                                    "status": "done",
+                                    "effort": 4
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "RDS",
+                            "name": "RDS scales up to current customer needs",
+                            "startDate": "",
+                            "projectLength": "2.5",
+                            "epics": [
+                                {
+                                    "name": "Optimize content fetching",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Force optimized content fetching everywhere",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01",
+                "launch": "Comments"
+            },
+            "groups": [
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "Strategic Dashboard",
+                            "name": "Enhance Strategic Dashboard",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Improve usability of Strategic Dashboard",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Analytics Area",
+                            "name": "Reporting supports retail vertical",
+                            "startDate": "",
+                            "projectLength": "11",
+                            "epics": [
+                                {
+                                    "name": "Self service onboarding for retail customers",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Retail strategies on Strategic Dashboard: Gain new leads",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Retail strategies on Strategic Dashboard: Increase retention rate",
+                                    "status": "done",
+                                    "effort": 1.5
+                                },
+                                {
+                                    "name": "Retail strategies on Strategic Dashboard: Increase existing store revenue",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Retail strategies on Strategic Dashboard: Increase new store revenue",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Retail strategies on Strategic Dashboard with sales channel filtering",
+                                    "status": "done",
+                                    "effort": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "Smart Insight",
+                            "name": "Smart Insight Self Service Onboarding",
+                            "startDate": "",
+                            "projectLength": "1.5",
+                            "epics": [
+                                {
+                                    "name": "Customer deletion process is fully automated",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Self service onboarding is rolled out globally",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "Analytics Area",
+                            "name": "Custom reporting",
+                            "startDate": "",
+                            "projectLength": "9",
+                            "epics": [
+                                {
+                                    "name": "Basic custom conversion report for Runtastic with multiple users",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Improved custom conversion report for Runtastic",
+                                    "status": "done",
+                                    "effort": 4
+                                },
+                                {
+                                    "name": "(Discovery) Review and prepare airline data for reporting",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "(Discovery) Map out options for custom reporting",
+                                    "status": "cancelled",
+                                    "effort": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01"
+            },
+            "groups": [
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "AC",
+                            "name": "Pilot timezone support in AC",
+                            "startDate": "",
+                            "projectLength": "1",
+                            "epics": [
+                                {
+                                    "name": "Fix UX problems from pilot feedback",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "AC",
+                            "name": "Faster segmentation from AC programs",
+                            "startDate": "",
+                            "projectLength": "7",
+                            "epics": [
+                                {
+                                    "name": "Improve execution speed of programs without exit condition",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Optimize segment execution per segment type",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Separate AC execution from Segment calculation",
+                                    "status": "postponed",
+                                    "effort": 3
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Segmentation",
+                            "name": "Improved email behavior segmentation speed",
+                            "startDate": "",
+                            "projectLength": "7",
+                            "epics": [
+                                {
+                                    "name": "Email received filter is calculated from Data Platform",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Prepare additional filter migrations",
+                                    "status": "postponed",
+                                    "effort": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "RTI",
+                            "name": "Product catalog based tactics for eCommerce and Retail",
+                            "startDate": "",
+                            "projectLength": "11",
+                            "epics": [
+                                {
+                                    "name": "Price drop treatment MVP",
+                                    "status": "done",
+                                    "effort": 4
+                                },
+                                {
+                                    "name": "Trigger and audience collection based on catalog updates",
+                                    "status": "done",
+                                    "effort": 4
+                                },
+                                {
+                                    "name": "The solution is configurable by customers",
+                                    "status": "done",
+                                    "effort": 3
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "RTI + Segmentation",
+                            "name": "Real-time decisions data integration improvements",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Customer Pub/Sub stream integration",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Mobile SDK event integration",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "WebExtend event integration",
+                                    "status": "todo",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "RTI",
+                            "name": "Customers can connect their own backend to RTI programs",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Pub/Sub node is available for customers",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "RTI + Segmentation",
+                            "name": "Real-time decisions based on event details",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Real-time decision is able to filter and calculate event details",
+                                    "status": "postponed",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Real-time decisions configuration is more generic and flexible ",
+                                    "status": "postponed",
+                                    "effort": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01",
+                "launch": "Comments"
+            },
+            "groups": [
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "SMS",
+                            "name": "Map and update data correctly",
+                            "startDate": "",
+                            "projectLength": "1.5",
+                            "epics": [
+                                {
+                                    "name": "Enrich contact data with last sent SMS timestamp",
+                                    "status": "postponed",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Push all remainging data to data-platform",
+                                    "status": "postponed",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "SMS",
+                            "name": "Usability improvements ",
+                            "startDate": "",
+                            "projectLength": "2.3",
+                            "epics": [
+                                {
+                                    "name": "UI workflow - fix problematic flows.",
+                                    "status": "done",
+                                    "effort": 0.3
+                                },
+                                {
+                                    "name": "Translate the SMS UI",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Costs overview \nExpose the existing pricelist for the customer",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Provide cost calculator, where clients can calculate \nestimated costs for a campaign or a whole month.",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "EMS-Admin- 1 central page to handle all SMS customers\nExpose more info for operations.",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Ads",
+                            "name": "Mobile advertising ID",
+                            "startDate": "",
+                            "projectLength": "1",
+                            "epics": [
+                                {
+                                    "name": "Add Mobile advertising ID to the available identifiers",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Email",
+                            "name": "Scalability improvements",
+                            "startDate": "",
+                            "projectLength": "7.5",
+                            "epics": [
+                                {
+                                    "name": "Measure batch email bottlenecks",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Measure transactional email bottlenecks",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Increase coverage of SLAs",
+                                    "status": "cancelled",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Improved Triggered Email priority handling",
+                                    "status": "postponed",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Scale up Triggered Email infrastructure",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Email",
+                            "name": "Reduce operational costs",
+                            "startDate": "",
+                            "projectLength": "6",
+                            "epics": [
+                                {
+                                    "name": "Bounce handling stability",
+                                    "status": "done",
+                                    "effort": 1.5
+                                },
+                                {
+                                    "name": "Sending checks are independent from Broadcast infrastructure",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Support deliverability team PMTA manager development",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "More efficient PMTA selection",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Relay is independent from Broadcast infrastructure",
+                                    "status": "postponed",
+                                    "effort": 1.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Email",
+                            "name": "Usability improvements",
+                            "startDate": "",
+                            "projectLength": "2.5",
+                            "epics": [
+                                {
+                                    "name": "Support UI redesign",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Email campaign distribution stability fixes",
+                                    "status": "done",
+                                    "effort": 1.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "CAT",
+                            "name": "Deliverability ",
+                            "startDate": "",
+                            "projectLength": "1.5",
+                            "epics": [
+                                {
+                                    "name": "One-Click list unsubscribe",
+                                    "status": "done",
+                                    "effort": 1.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Email",
+                            "name": "Hardening the platform",
+                            "startDate": "",
+                            "projectLength": "1.5",
+                            "epics": [
+                                {
+                                    "name": "Rollout HTTPS link tracking",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Minimal link integrity solution to validate solution",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Push",
+                            "name": "Rich Push Personalization",
+                            "startDate": "",
+                            "projectLength": "3.5",
+                            "epics": [
+                                {
+                                    "name": "Rich Push image selection UI GA release",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Push using VCE",
+                                    "status": "postponed",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Rich Push Editor for Action Buttons (VCE)",
+                                    "status": "postponed",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "VCE with multi-lang for Push",
+                                    "status": "postponed",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Push",
+                            "name": "RTI triggered by mobile events",
+                            "startDate": "",
+                            "projectLength": "0.5",
+                            "epics": [
+                                {
+                                    "name": "Trigger RTI with mobile events and use attributes in segmentation and personalization (carry over attribute in segmentation and pers)",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Push",
+                            "name": "Scaled Device Segmentation via USS (carry over ME segment migration to USS)",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "All ME segmentation migrated to USS",
+                                    "status": "done",
+                                    "effort": 3
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Push",
+                            "name": "Reporting for Not Sents",
+                            "startDate": "",
+                            "projectLength": "0.5",
+                            "epics": [
+                                {
+                                    "name": "Enhancing current push reporting on not sents",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "InApp",
+                            "name": "InApp External Piloting (aka Phase2)",
+                            "startDate": "",
+                            "projectLength": "9.5",
+                            "epics": [
+                                {
+                                    "name": "Inapp piloting phase 1",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Msg delivery latency data collection + performance tests around the globe + SLA draft ",
+                                    "status": "done",
+                                    "effort": 1.5
+                                },
+                                {
+                                    "name": "Critical UX fixes for known piloting issues",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Real-time Audience updates (RTI)",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Inapp piloting Phase 2 (support clients + implement feedback from phase 1)",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Web Channel",
+                            "name": "PII improvements in Predict backend",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "PII improvements in Predict backend",
+                                    "status": "done",
+                                    "effort": 3
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Web Channel",
+                            "name": "URL exclude filter for campaigns",
+                            "startDate": "",
+                            "projectLength": "1",
+                            "epics": [
+                                {
+                                    "name": "URL exclude filter for campaigns",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Web Channel",
+                            "name": "Template editing piloting",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Template editing piloting",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Web Channel",
+                            "name": "Real-Time Audiences for Pull Channels",
+                            "startDate": "",
+                            "projectLength": "1",
+                            "epics": [
+                                {
+                                    "name": "DCache development support towards In-App team",
+                                    "status": "postponed",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "SDK",
+                            "name": "Unified SDK",
+                            "startDate": "",
+                            "projectLength": "15",
+                            "epics": [
+                                {
+                                    "name": "Emarsys SDK is pilotable",
+                                    "status": "done",
+                                    "effort": 6
+                                },
+                                {
+                                    "name": "Emarsys SDK is globally releasable",
+                                    "status": "inprogress",
+                                    "effort": 3
+                                },
+                                {
+                                    "name": "Predict recommendations in Emarsys SDK",
+                                    "status": "postponed",
+                                    "effort": 4
+                                },
+                                {
+                                    "name": "Click tracking for recommendations",
+                                    "status": "postponed",
+                                    "effort": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "SMS",
+                            "name": "Self served SMS",
+                            "startDate": "",
+                            "projectLength": "2.5",
+                            "epics": [
+                                {
+                                    "name": "Self-Serve URL registration ( with the aggregator )",
+                                    "status": "postponed",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Self served Top-Ups",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "SMS",
+                            "name": "Be competative in the US market",
+                            "startDate": "",
+                            "projectLength": "1.5",
+                            "epics": [
+                                {
+                                    "name": "Link inbound messages to the last sent SMS campaign",
+                                    "status": "postponed",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "New Agreggator  \"Open Market\"",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Export for inbound messages",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "SMS",
+                            "name": "Support Tactics",
+                            "startDate": "",
+                            "projectLength": "0.5",
+                            "epics": [
+                                {
+                                    "name": "Provide API endpoints to copy campaigns and  probably also Key-Words handlers.",
+                                    "status": "postponed",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01"
+            },
+            "groups": [
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "Design System ",
+                            "name": "Platform Look and Feel is Updated",
+                            "startDate": "",
+                            "projectLength": "4",
+                            "epics": [
+                                {
+                                    "name": "Borders, Box inception, Shadows and Depth are updated in all components.",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Typography, Rhythm, Placement, Vertical Rhythm are updated in all components",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Page Frame, Breakpoints, Grid are updated in all components",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Enterprise, Design System",
+                            "name": "New Design and Navigation Structure is Presentable",
+                            "startDate": "",
+                            "projectLength": "10",
+                            "epics": [
+                                {
+                                    "name": "Ability to Store multiple navigation variations ",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Ability to pair navigation variation based on Verticals",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Ability to display vertical indicators within old and new design",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Google Analitycs tracking is implemented in the old and new suite",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Local Dev support for navigation customization (adding new menu items, hierarchy, versioning)",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "New navigation component is built and is ready to use ",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Design System ",
+                            "name": "Design System Supports New Design and Navigation",
+                            "startDate": "",
+                            "projectLength": "4",
+                            "epics": [
+                                {
+                                    "name": "CDP products are not effected by redesign related ui defects",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Automation products are not effected by redesign related ui defects",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Remaining areas and products are not effected by redesign related ui defects",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Enterprise, Design System",
+                            "name": "Upsell process",
+                            "startDate": "",
+                            "projectLength": "5",
+                            "epics": [
+                                {
+                                    "name": "Products can display package related upsell components ",
+                                    "status": "postponed",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Products can display package related upsell messages",
+                                    "status": "done",
+                                    "effort": 2.5
+                                },
+                                {
+                                    "name": "Upsell process can be initiated by user in Tactics",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Enterprise",
+                            "name": "Product Performance Metrics",
+                            "startDate": "",
+                            "projectLength": "4",
+                            "epics": [
+                                {
+                                    "name": "GA tag naming conventions",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "GA tagging for Tactics",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Research: We measure Product Performance Metrics for Tactics",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Research: Data Warehouse connection via API",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "UX",
+                            "name": "Object distribution",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "Research: AC distribution",
+                                    "status": "done",
+                                    "effort": 3
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Enterprise",
+                            "name": "Multiaccount permission system - single environment",
+                            "startDate": "",
+                            "projectLength": "3.5",
+                            "epics": [
+                                {
+                                    "name": "Discovery: User creation in multiaccount structure causes timeout",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Account switcher access right regulated",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Profile and password reset management in parent account",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Display user role in list view",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "Tactics",
+                            "name": "RTI based tactics should be supported",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "RTI based tactics should be supported",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Tactics",
+                            "name": "Release related support and UI changes",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "Release related support",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "UI changes based on feedbacks",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Tactics",
+                            "name": "Combined Segments are supported in Tactics",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Combined Segments are supported in Tactics",
+                                    "status": "done",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Tactics",
+                            "name": "Self-Service Tactics creation",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "Unpublished Tactics for Testing",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Listing all Existing Tactics in EMS admin",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Enable creating tactic from EMS admin",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Tactics",
+                            "name": "Localisation of Tactics",
+                            "startDate": "",
+                            "projectLength": "3",
+                            "epics": [
+                                {
+                                    "name": "UI components localisation",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Enable content localisation",
+                                    "status": "postponed",
+                                    "effort": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "devCycleData": {
+            "cycle": {
+                "name": "2019 Q2",
+                "start": "2019-04-01",
+                "delivery": "2019-04-15",
+                "end": "2019-07-01"
+            },
+            "groups": [
+                {
+                    "objective": "We drive business growth",
+                    "projects": [
+                        {
+                            "crew": "Personalization",
+                            "name": "Personalization fully supports pilot customers",
+                            "startDate": "",
+                            "projectLength": "14",
+                            "epics": [
+                                {
+                                    "name": "Existing pilots can rely on send time predict in email ",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "New customers can start using send-time predict",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "All contacts receive the appropriate content even if contact API is used",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Email sending with new service scales for pilots",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Personalization service availabilty is ensured by the appropriate alerting system",
+                                    "status": "todo",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Personalized content is differentiated clearly between customers when sending",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Ensure contacts can never recieve empty recommendation",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Discover resource dependencies to avoid missing data cause empty personalization",
+                                    "status": "done",
+                                    "effort": 0.5
+                                },
+                                {
+                                    "name": "Make sure that no contact will receive a message when there is no data available for personalization",
+                                    "status": "inprogress",
+                                    "effort": 1.5
+                                },
+                                {
+                                    "name": "Loyalty is supported through personalization service",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Improve error handling with email sending",
+                                    "status": "todo",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Personalization",
+                            "name": "Personalization supports heavy tactics",
+                            "startDate": "",
+                            "projectLength": "2",
+                            "epics": [
+                                {
+                                    "name": "Personalization supports contact.id identification for heavy tactics",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Users can refer to contact.id in their campaigns",
+                                    "status": "done",
+                                    "effort": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We fight attrition",
+                    "projects": [
+                        {
+                            "crew": "Predict",
+                            "name": "Predict team reduces its operational costs",
+                            "startDate": "",
+                            "projectLength": "10",
+                            "epics": [
+                                {
+                                    "name": "Existing pilots can rely on send time predict in email ",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Existing infrastructure supports new customers",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Support can identify product data upload issues earlier",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Support can identify log (user behaviour) processing  issues earlier",
+                                    "status": "todo",
+                                    "effort": 3
+                                },
+                                {
+                                    "name": "Predict supports product data upload to CDP",
+                                    "status": "inprogress",
+                                    "effort": 2
+                                }
+                            ]
+                        },
+                        {
+                            "crew": "Editor",
+                            "name": "Introduce multi-language email campaigns",
+                            "startDate": "",
+                            "projectLength": "9",
+                            "epics": [
+                                {
+                                    "name": "Email campaigns can handle multiple languages",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Users can manage the list of their campaign languages",
+                                    "status": "done",
+                                    "effort": 2
+                                },
+                                {
+                                    "name": "Users can apply their multi-language template changes to the campaign",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "VCE users (i.e. channels) can use the same multilanguage solution",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Multi-language solution supports translation workflow",
+                                    "status": "done",
+                                    "effort": 1
+                                },
+                                {
+                                    "name": "Multi-language emails' from name and subject line are validated",
+                                    "status": "carry over",
+                                    "effort": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "objective": "We are vertical agnostic",
+                    "projects": [
+                        {
+                            "crew": "Editor",
+                            "name": "Long-term heavy tactics is supported",
+                            "startDate": "",
+                            "projectLength": "0.5",
+                            "epics": [
+                                {
+                                    "name": "Heavy tactics users can easily modify their product recommendation blocks",
+                                    "status": "done",
+                                    "effort": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

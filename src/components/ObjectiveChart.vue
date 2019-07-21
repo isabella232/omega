@@ -13,10 +13,10 @@
         class="global-objectives__chart"
         type="radialBar"
         height="100%"
-        :options="options"
+        :options="options1"
         :series="objectiveProgresses"></apexchart>
     </div>
-    <div class="global-objectives__details">
+    <div class="global-objectives__details" :class="objectiveLengthClass()">
       <div>
         <div class="global-objectives__detail" v-for="objective in objectivesWithRelativeValues" :key="objective.name">
           <div class="global-objectives__detail__progress">{{ objective.progress }}%
@@ -29,6 +29,10 @@
 </template>
 
 <script>
+const deepCopy = function(src) {
+  return JSON.parse(JSON.stringify(src));
+}
+
 export default {
   name: "objective-chart",
 
@@ -36,7 +40,7 @@ export default {
 
   data() {
     return {
-      options: {
+      options1Default: {
         chart: {},
         plotOptions: {
           radialBar: {
@@ -54,7 +58,7 @@ export default {
             },
             hollow: {
               margin: 50,
-              size: "40%",
+              size: "35%",
               background: "transparent",
               image: undefined,
               dropShadow: {
@@ -84,13 +88,13 @@ export default {
         //   "#aaa",
         //   "#eee"
         // ],
-        colors: ['#d3dc2d', '#56c5c9', '#6879ae'],
+        colors: ['#d3dc2d', '#56c5c9', '#6879ae', '#3a5684', '#40877e', '#87991a', '#efab00', '#d8d8d8'],
         fill: {
           opacity: 1
         }
       },
 
-      options2: {
+      options2Default: {
         chart: {
           animations: {
             enabled: false
@@ -112,7 +116,7 @@ export default {
             },
             hollow: {
               margin: 50,
-              size: "40%",
+              size: "35%",
               background: "transparent",
               image: undefined,
               dropShadow: {
@@ -142,7 +146,7 @@ export default {
         //   "#102649",
         //   "#102649"
         // ],
-        colors: ['#102649', '#102649', '#102649'],
+        colors: ['#102649', '#102649', '#102649', '#102649', '#102649', '#102649', '#102649', '#102649'],
         fill: {
           opacity: 1
         }
@@ -154,6 +158,19 @@ export default {
   },
 
   computed: {
+    options1() {
+      let options = deepCopy(this.options1Default) 
+      if (this.objectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'      
+      return options
+    },
+
+    options2() {
+      let options = deepCopy(this.options2Default)
+      if (this.objectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'
+      return options;
+    },    
+
+
     objectivesWithRelativeValues() {
       let objectives = this.objectives.map(objective => {
         return {
@@ -167,15 +184,23 @@ export default {
       let longestObjective = objectives[0]
 
       objectives = objectives.map((objective, i) => {
-        let relativeModifierToLongest =
-          objective.weeks / longestObjective.weeks;
-        let trackLength = Math.ceil(relativeModifierToLongest * 100 * 1.1);
+        let relativeModifierToLongest = objective.weeks / longestObjective.weeks;
+        let trackLength = Math.ceil(relativeModifierToLongest * 100 * 1.1) ||  0;
+        
         if (trackLength < 10) trackLength *= 3;
         else if (trackLength < 50) trackLength *= 1.5;
+        
         if (trackLength > 100) trackLength = 100;
-        let progressOnTrack = Math.ceil(
-          (objective.progress / 100) * trackLength
-        )
+        let progressOnTrack = Math.ceil((objective.progress / 100) * trackLength) || 0;
+
+        // return {
+        //   name: objective.name,
+        //   weeks: objective.weeks,
+        //   weeksDone: objective.weeksDone,
+        //   progress: 60 + Math.round(Math.random() * 20),
+        //   trackLength: 80 + Math.round(Math.random() * 20),
+        //   progressOnTrack: 50 + Math.round(Math.random() * 20)
+        // }
 
         return {
           name: objective.name,
@@ -185,7 +210,7 @@ export default {
           trackLength,
           progressOnTrack
         }
-      })
+      })    
 
       return objectives
     },
@@ -203,6 +228,13 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    objectiveLengthClass() {
+      let objectiveClass = {}
+      objectiveClass['global-objectives__details-' + this.objectives.length] = true
+      if (this.objectives.length > 4) objectiveClass['global-objectives__details-gt4'] = true
+      return objectiveClass
+    }
+  }
 }
 </script>
