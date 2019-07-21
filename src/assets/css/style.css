@@ -571,8 +571,7 @@ body {
 
 .global-objectives__details.global-objectives__details-gt4 {
     top: 21px;
-    left: 290px;
-    width: calc(100% - 290px);
+    width: calc(100% - 270px);
 }
 
 .global-objectives__details__title {
