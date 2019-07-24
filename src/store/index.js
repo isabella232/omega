@@ -64,7 +64,6 @@ export default function createStore(router) {
 
             async fetchAreaData({ state, commit }) {
                 commit('clearError')
-                commit('loadingOn')
 
                 try {
                     let response = await fetch(`https://ems-omega-data.herokuapp.com/overview`)
@@ -114,7 +113,11 @@ export default function createStore(router) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
                 }
+            },
 
+            async fetchAreaDataWithLoader({ commit, dispatch }) {                
+                commit('loadingOn')
+                await dispatch('fetchAreaData');
                 commit('loadingOff')
             }
         }

@@ -7,6 +7,7 @@
 <script>
 import "element-ui/lib/theme-chalk/display.css"
 import { mapState } from "vuex"
+const MINUTE = 1000 * 60
 
 export default {
   name: "Omega",
@@ -14,8 +15,31 @@ export default {
   computed: {...mapState(['loading'])},
 
   async created() {
-    await this.$store.dispatch('fetchAreaData');
-  },  
+    await this.loadOmegaData()
+    this.keepOmegaDataUpdated()
+  },
+
+  beforeDestroy(){
+    clearInterval(this.omegaDataUpdaterRef);    
+  },
+  
+  methods: {
+
+    async loadOmegaData() {
+      await this.$store.dispatch('fetchAreaDataWithLoader')
+    },
+
+    keepOmegaDataUpdated() {
+      this.omegaDataUpdaterRef = setInterval(() => this.$store.dispatch('fetchAreaData'), 1 * MINUTE)
+    }
+
+  },
+
+  data() {
+    return {
+      omegaDataUpdaterRef: null
+    }
+  }
 };
 </script>
 
