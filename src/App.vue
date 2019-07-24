@@ -30,7 +30,7 @@ export default {
     },
 
     keepOmegaDataUpdated() {
-      this.omegaDataUpdaterRef = setInterval(() => this.$store.dispatch('fetchAreaData'), 1 * MINUTE)
+      this.omegaDataUpdaterRef = setInterval(() => this.$store.dispatch('fetchAreaData'), 5 * MINUTE)
     }
 
   },
