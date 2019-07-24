@@ -16,7 +16,10 @@
               <div class="project-popover__header__owner">{{ project.owner }}</div>
               <div class="project-popover__header__name">{{ project.name }}</div>
 
-              <template v-if="project.weeks != project.weeksNotToDo">
+              <template v-if="project.weeks === 0">
+                <div class="project-popover__header__progress">TBD</div>
+              </template>
+              <template v-else-if="project.weeks != project.weeksNotToDo">
                 <div class="project-popover__header__progress">{{ project.progress + '%' }}</div>
                 <div class="project-popover__header__weeks">
                   <strong>{{ project.weeksDone }}</strong>
@@ -65,10 +68,8 @@
           <div>
             <div v-if="showArea" class="epic-container-column__project__area">{{ project.area }}</div>
             <div class="epic-container-column__project__title">{{ project.name }}</div>
-            <div
-              v-if="project.weeks != project.weeksNotToDo"
-              class="epic-container-column__project__epic-counts"
-            >
+            <div v-if="project.weeks === 0" class="epic-container-column__project__epic-counts">TBD</div>
+            <div v-else-if="project.weeks != project.weeksNotToDo" class="epic-container-column__project__epic-counts">
               <strong>{{ project.weeksDone }}</strong>
               of {{ project.weeks }} wks
             </div>
