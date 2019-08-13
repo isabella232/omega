@@ -1,7 +1,7 @@
 {
-    "name": "omega4",
+    "name": "omega",
     "version": "1.0.0",
-    "description": "A Vue.js project",
+    "description": "Emarsys Cycle Tracker",
     "author": "",
     "private": true,
     "scripts": {
