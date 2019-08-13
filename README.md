@@ -1,6 +1,6 @@
 # Omega
 
-> This is the progress tracker for Emarsys
+> Cycle progress tracker for Emarsys
 
 ## Build Setup
 
