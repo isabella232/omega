@@ -7,7 +7,7 @@ export default function createStore(router) {
     const store = new Vuex.Store({
         state: {
             loading: false,
-            error: true,            
+            error: true,
 
             pages: {
                 all: allPages,
@@ -23,7 +23,7 @@ export default function createStore(router) {
             },
 
             isOverviewPage(state) {
-                return state.pages.current.id === 'overview';
+                return state.pages.current.id === 'overview'
             }
         },
         mutations: {
@@ -66,8 +66,8 @@ export default function createStore(router) {
                 commit('clearError')
 
                 try {
-                    let response = await fetch(`https://ems-omega-data.herokuapp.com/overview`)
-                    // let response = await fetch(`http://localhost:3131/overview`)
+                    // let response = await fetch(`https://ems-omega-data.herokuapp.com/overview`)
+                    let response = await fetch(`http://localhost:3131/overview`)
                     let areaDataset = await response.json()
 
                     let areaData = {}
@@ -75,38 +75,37 @@ export default function createStore(router) {
                         areaData[areaOrderInBackend[i]] = new AreaData().applyData(specificAreaData.devCycleData)
                     })
 
-
                     // Overview
                     let devCycleData = { cycle: areaDataset[0].devCycleData.cycle, objectives: [] };
 
                     areaDataset = areaDataset.map((areaData, i) => {
                         areaData.devCycleData.objectives = areaData.devCycleData.objectives.map((objective) => {
                             objective.projects = objective.projects.map((project) => {
-                                project.area = state.pages.all.find((page) => page.id === areaOrderInBackend[i]).name;
-                                return project;
-                            });
+                                project.area = state.pages.all.find((page) => page.id === areaOrderInBackend[i]).name
+                                return project
+                            })
 
-                            return objective;
-                        });
+                            return objective
+                        })
 
-                        return areaData;
+                        return areaData
                     });
 
-                    let areasObjectives = areaDataset.map((areaData) => areaData.devCycleData.objectives);
+                    let areasObjectives = areaDataset.map((areaData) => areaData.devCycleData.objectives)
                     devCycleData.objectives = areasObjectives.reduce((acc, areaObjectives) => {
                         areaObjectives.forEach((areaObjective) => {
-                            let indexInAcc = acc.findIndex((el) => el.objective === areaObjective.objective);
+                            let indexInAcc = acc.findIndex((el) => el.objective === areaObjective.objective)
                             if (indexInAcc < 0) {
-                                acc.push(areaObjective);
+                                acc.push(areaObjective)
                             } else {
-                                acc[indexInAcc].projects = acc[indexInAcc].projects.concat(areaObjective.projects);
+                                acc[indexInAcc].projects = acc[indexInAcc].projects.concat(areaObjective.projects)
                             }
                         });
 
-                        return acc;
-                    }, []);
+                        return acc
+                    }, [])
 
-                    areaData.overview = new AreaData().applyData(devCycleData);
+                    areaData.overview = new AreaData().applyData(devCycleData)
 
                     commit('setAreaData', areaData)
                 } catch (e) {
@@ -115,9 +114,9 @@ export default function createStore(router) {
                 }
             },
 
-            async fetchAreaDataWithLoader({ commit, dispatch }) {                
+            async fetchAreaDataWithLoader({ commit, dispatch }) {
                 commit('loadingOn')
-                await dispatch('fetchAreaData');
+                await dispatch('fetchAreaData')
                 commit('loadingOff')
             }
         }
