@@ -14,8 +14,8 @@ const allPages = [
 
     {
         id: 'automation',
-        name: 'Automation',
-        path: '/area/automation'
+        name: 'Automation & Personalization',
+        path: '/area/automation-personalization'
     },
 
     {
@@ -38,8 +38,8 @@ const allPages = [
 
     {
         id: 'pcm',
-        name: 'Personalized Content Management',
-        path: '/area/pcm'
+        name: 'WebMail',
+        path: '/area/webmail'
     },
 
     {
