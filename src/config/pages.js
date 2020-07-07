@@ -20,8 +20,8 @@ const allPages = [
 
     {
         id: 'channels',
-        name: 'Channels',
-        path: '/area/channels'
+        name: 'Mobile',
+        path: '/area/mobile'
     },
 
     {
