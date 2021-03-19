@@ -66,7 +66,7 @@ export default function createStore(router) {
                 commit('clearError')
 
                 try {
-                    let response = await fetch(`https://omega-data.gservice.emarsys.net/overview`)
+                    let response = await fetch(`https://omega-data-staging.gservice.emarsys.com/overview`)
                     // let response = await fetch(`http://localhost:3131/overview`)
                     let areaDataset = await response.json()
 
