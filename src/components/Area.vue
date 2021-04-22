@@ -25,7 +25,7 @@
         <el-row class="epic-container">
           <div class="epic-container-column">
             <template v-for="objective in areaData.objectives">
-              <objective-list-item :objective="objective" :key="objective.name"></objective-list-item>                 
+              <objective-list-item :objective="objective" :key="objective.name"></objective-list-item>
               <project-list-item v-for="project in objective.projects" :key="objective.name + project.name" :project="project" :show-area="isOverviewPage"></project-list-item>
             </template>
           </div>

@@ -29,8 +29,14 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 const deepCopy = function(src) {
   return JSON.parse(JSON.stringify(src));
+}
+
+const sortObjectives = (objectives) => {
+  return deepCopy(objectives).sort((obj1, obj2) => obj2.weeks - obj1.weeks)
 }
 
 export default {
@@ -140,21 +146,48 @@ export default {
   },
 
   computed: {
+    ...mapState(['isJiraEnabled']),
+
+    summarizedObjectives() {
+      if(!this.isJiraEnabled) {
+        return this.objectives
+      }
+
+      const maxObjectivesOnPage = 7;
+      if(this.objectives.length <= maxObjectivesOnPage) {
+        return this.objectives
+      }
+
+      const sortedObjectives = sortObjectives(this.objectives)
+      const headObjectives = sortedObjectives.slice(0, maxObjectivesOnPage - 1)
+      const tailObjectives = sortedObjectives.slice(maxObjectivesOnPage - 1)
+      const defaultOtherObjective = { name: 'Other', weeks: 0, weeksDone: 0, progress: 0 }
+
+      const summarizedOtherObjective = tailObjectives.reduce((acc, obj) => {
+        acc.weeks += obj.weeks
+        acc.weeksDone += obj.weeksDone
+        acc.progress += obj.progress
+        return acc
+      }, defaultOtherObjective)
+
+      return sortObjectives(headObjectives.concat(summarizedOtherObjective))
+    },
+
     options1() {
       let options = deepCopy(this.options1Default)
-      if (this.objectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'
+      if (this.summarizedObjectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'
       return options
     },
 
     options2() {
       let options = deepCopy(this.options2Default)
-      if (this.objectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'
+      if (this.summarizedObjectives.length > 4) options.plotOptions.radialBar.hollow.size = '15%'
       return options;
     },
 
 
     objectivesWithRelativeValues() {
-      let objectives = this.objectives.map(objective => {
+      let objectives = this.summarizedObjectives.map(objective => {
         return {
           name: objective.name,
           weeks: objective.weeks,
@@ -205,8 +238,8 @@ export default {
   methods: {
     objectiveLengthClass() {
       let objectiveClass = {}
-      objectiveClass['global-objectives__details-' + this.objectives.length] = true
-      if (this.objectives.length > 4) objectiveClass['global-objectives__details-gt4'] = true
+      objectiveClass['global-objectives__details-' + this.summarizedObjectives.length] = true
+      if (this.summarizedObjectives.length > 4) objectiveClass['global-objectives__details-gt4'] = true
       return objectiveClass
     }
   }

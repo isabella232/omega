@@ -13,6 +13,7 @@ export default function createStore(router) {
                 all: allPages,
                 current: {}
             },
+            isJiraEnabled: false,
 
             areaDataset: null
         },
@@ -47,8 +48,9 @@ export default function createStore(router) {
                 state.pages.current = state.pages.all.find((page) => page.id === pageId)
             },
 
-            setCurrentPageByPath(state, path) {
-                state.pages.current = state.pages.all.find((page) => page.path === path)
+            setCurrentPageByPath(state, { path, query }) {
+              state.isJiraEnabled = !!query.jira;
+              state.pages.current = state.pages.all.find((page) => page.path === path)
             },
 
             setAreaData(state, areaData) {
@@ -63,14 +65,25 @@ export default function createStore(router) {
             },
 
             async fetchAreaData({ state, commit }) {
+                // const host = 'http://localhost:3131';
+                const host = 'https://omega-data.gservice.emarsys.net';
                 commit('clearError')
-
                 try {
-                    let response = await fetch(`https://omega-data.gservice.emarsys.net/overview`)
-                    // let response = await fetch(`http://localhost:3131/overview`)
+                    if(state.isJiraEnabled) {
+                      let response = await fetch(`${host}/jira/overview`)
+                      let areaDataset = await response.json()
+
+                      let overview = new AreaData().applyData(areaDataset.devCycleData)
+
+                      commit('setAreaData', { overview })
+                      return
+                    }
+
+                    let response = await fetch(`${host}/overview`)
                     let areaDataset = await response.json()
 
                     let areaData = {}
+
                     areaDataset.forEach((specificAreaData, i) => {
                         areaData[areaOrderInBackend[i]] = new AreaData().applyData(specificAreaData.devCycleData)
                     })
@@ -78,6 +91,7 @@ export default function createStore(router) {
                     // Overview
                     let devCycleData = { cycle: areaDataset[0].devCycleData.cycle, objectives: [] };
 
+                    //enhancing each project with area field
                     areaDataset = areaDataset.map((areaData, i) => {
                         areaData.devCycleData.objectives = areaData.devCycleData.objectives.map((objective) => {
                             objective.projects = objective.projects.map((project) => {
@@ -91,6 +105,7 @@ export default function createStore(router) {
                         return areaData
                     });
 
+                    //merge projects which belongs to different areas into the same objective
                     let areasObjectives = areaDataset.map((areaData) => areaData.devCycleData.objectives)
                     devCycleData.objectives = areasObjectives.reduce((acc, areaObjectives) => {
                         areaObjectives.forEach((areaObjective) => {
@@ -123,7 +138,7 @@ export default function createStore(router) {
     })
 
     router.onReady(() => {
-        store.commit('setCurrentPageByPath', router.currentRoute.path)
+        store.commit('setCurrentPageByPath', router.currentRoute)
     })
 
     return store

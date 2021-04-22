@@ -20,9 +20,9 @@ export default {
   },
 
   beforeDestroy(){
-    clearInterval(this.omegaDataUpdaterRef);    
+    clearInterval(this.omegaDataUpdaterRef);
   },
-  
+
   methods: {
 
     async loadOmegaData() {
