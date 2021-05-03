@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import { allPages, areaOrderInBackend } from '../config/pages'
+import { areaOrderInBackend } from '../config/pages'
 import AreaData from '../libraries/areaData'
 
 
@@ -10,10 +10,10 @@ export default function createStore(router) {
             error: true,
 
             pages: {
-                all: allPages,
+                all: [],
                 current: {}
             },
-            isJiraEnabled: false,
+            isJiraEnabled: true,
 
             areaDataset: null
         },
@@ -45,16 +45,30 @@ export default function createStore(router) {
             },
 
             setCurrentPage(state, pageId) {
+                if(state.pages.all.length === 0) return null;
                 state.pages.current = state.pages.all.find((page) => page.id === pageId)
             },
 
-            setCurrentPageByPath(state, { path, query }) {
-              state.isJiraEnabled = !!query.jira;
+            setCurrentPageByPath(state, { path }) {
+              if(state.pages.all.length === 0) return null;
               state.pages.current = state.pages.all.find((page) => page.path === path)
             },
 
             setAreaData(state, areaData) {
                 state.areaDataset = areaData
+            },
+
+            setAllPages(state, areaNames) {
+              const overviewPage = [{ id: 'overview', name: 'Overview', path: '/' }];
+              const pages = Object.keys(state.areaDataset).map((areaId) => {
+                return {
+                  id: areaId,
+                  name: areaNames[areaId],
+                  path: `/area/${areaId}`
+                }
+              });
+
+              state.pages.all = overviewPage.concat(pages);
             }
         },
 
@@ -70,12 +84,33 @@ export default function createStore(router) {
                 commit('clearError')
                 try {
                     if(state.isJiraEnabled) {
-                      let response = await fetch(`${host}/jira/overview`)
-                      let areaDataset = await response.json()
+                      const response = await fetch(`${host}/jira/overview`)
+                      const areaDataset = await response.json()
+                      const cycleData = areaDataset.devCycleData;
 
-                      let overview = new AreaData().applyData(areaDataset.devCycleData)
+                      const overview = new AreaData().applyData(cycleData);
 
-                      commit('setAreaData', { overview })
+                      const areaData = { overview };
+                      Object.keys(cycleData.area).forEach((area) => {
+                        const areaObjectives = cycleData.objectives.map((objective) => {
+                          return {
+                            ...objective,
+                            projects: objective.projects.filter(({ areaIds }) => areaIds.includes(area))
+                          };
+                        });
+                        const objectives = areaObjectives.filter(({ projects }) => projects.length !== 0);
+
+                        if(objectives.length !== 0) {
+                          areaData[area] = new AreaData().applyData({
+                            cycle: cycleData.cycle,
+                            objectives
+                          });
+                        }
+                      })
+
+                      commit('setAreaData', areaData);
+                      commit('setAllPages', cycleData.area);
+                      commit('setCurrentPageByPath', router.currentRoute);
                       return
                     }
 
