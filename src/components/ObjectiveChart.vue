@@ -161,7 +161,7 @@ export default {
       const sortedObjectives = sortObjectives(this.objectives)
       const headObjectives = sortedObjectives.slice(0, maxObjectivesOnPage - 1)
       const tailObjectives = sortedObjectives.slice(maxObjectivesOnPage - 1)
-      const defaultOtherObjective = { name: 'Other', weeks: 0, weeksDone: 0, progress: 0 }
+      const defaultOtherObjective = { name: 'Other initiatives', weeks: 0, weeksDone: 0, progress: 0 }
 
       const summarizedOtherObjective = tailObjectives.reduce((acc, obj) => {
         acc.weeks += obj.weeks
