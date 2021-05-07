@@ -60,7 +60,9 @@ export default function createStore(router) {
 
             setAllPages(state, areaNames) {
               const overviewPage = [{ id: 'overview', name: 'Overview', path: '/' }];
-              const pages = Object.keys(state.areaDataset).map((areaId) => {
+              const pages = Object.keys(areaNames)
+                .filter(areaId => state.areaDataset.hasOwnProperty(areaId))
+                .map((areaId) => {
                 return {
                   id: areaId,
                   name: areaNames[areaId],
@@ -93,9 +95,22 @@ export default function createStore(router) {
                       const areaData = { overview };
                       Object.keys(cycleData.area).forEach((area) => {
                         const areaObjectives = cycleData.objectives.map((objective) => {
+                          const projects = objective.projects.map((project) => {
+                            return {
+                              ...project,
+                              epics: project.epics.filter(({ areaIds }) => areaIds.includes(area))
+                            };
+                          }).map((project) => {
+                            const areaIds = project.epics.map(({ areaIds }) => areaIds).flat();
+                            return {
+                              ...project,
+                              area: [...new Set(areaIds)].map(id => cycleData.area[id]).join(', ')
+                            };
+                          });
+
                           return {
                             ...objective,
-                            projects: objective.projects.filter(({ areaIds }) => areaIds.includes(area))
+                            projects: projects.filter(({ epics }) => epics.length !== 0)
                           };
                         });
                         const objectives = areaObjectives.filter(({ projects }) => projects.length !== 0);
