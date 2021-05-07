@@ -828,6 +828,11 @@ body {
     left: -10px;
 }
 
+.jira-link {
+  color: white;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 991px) {
     .logo {
       width: 20px;

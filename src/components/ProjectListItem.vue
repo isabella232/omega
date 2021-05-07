@@ -15,8 +15,8 @@
             <el-row class="project-popover__header">
               <div class="project-popover__header__owner">{{ project.owner }}</div>
               <div class="project-popover__header__name">
-                {{ project.name }}
-                <a :href="project.url">
+                <a :href="project.url" class="jira-link">
+                  {{ project.name }}
                   <i class="el-icon-link"></i>
                 </a>
               </div>
@@ -52,8 +52,8 @@
                 :key="epic.name"
               >
                 <div class="project-popover__epic__name">
-                  {{ epic.name }}
-                  <a :href="epic.url">
+                  <a :href="epic.url" class="jira-link">
+                    {{ epic.name }}
                     <i class="el-icon-link"></i>
                   </a>
                 </div>
