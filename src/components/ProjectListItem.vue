@@ -14,7 +14,12 @@
           <el-main>
             <el-row class="project-popover__header">
               <div class="project-popover__header__owner">{{ project.owner }}</div>
-              <div class="project-popover__header__name">{{ project.name }}</div>
+              <div class="project-popover__header__name">
+                {{ project.name }}
+                <a :href="project.url">
+                  <i class="el-icon-link"></i>
+                </a>
+              </div>
 
               <template v-if="project.weeks === 0">
                 <div class="project-popover__header__progress">TBD</div>
@@ -46,7 +51,12 @@
                 v-for="epic in project.epics"
                 :key="epic.name"
               >
-                <div class="project-popover__epic__name">{{ epic.name }}</div>
+                <div class="project-popover__epic__name">
+                  {{ epic.name }}
+                  <a :href="epic.url">
+                    <i class="el-icon-link"></i>
+                  </a>
+                </div>
                 <div class="project-popover__epic__effort">
                   {{ epic.effort }}
                   <span v-if="epic.effort <= 1">week</span>
