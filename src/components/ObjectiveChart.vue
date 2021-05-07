@@ -153,7 +153,7 @@ export default {
         return this.objectives
       }
 
-      const maxObjectivesOnPage = 7;
+      const maxObjectivesOnPage = 6;
       if(this.objectives.length <= maxObjectivesOnPage) {
         return this.objectives
       }
