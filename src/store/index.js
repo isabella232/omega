@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import { areaOrderInBackend } from '../config/pages'
 import AreaData from '../libraries/areaData'
 
+const uniq = (list) => [...new Set(list)];
 
 export default function createStore(router) {
     const store = new Vuex.Store({
@@ -95,16 +96,20 @@ export default function createStore(router) {
                       const areaData = { overview };
                       Object.keys(cycleData.area).forEach((area) => {
                         const areaObjectives = cycleData.objectives.map((objective) => {
-                          const projects = objective.projects.map((project) => {
+                          const areaRelatedProjects = objective.projects.map((project) => {
                             return {
                               ...project,
                               epics: project.epics.filter(({ areaIds }) => areaIds.includes(area))
                             };
-                          }).map((project) => {
-                            const areaIds = project.epics.map(({ areaIds }) => areaIds).flat();
+                          });
+
+                          const projects = areaRelatedProjects.map((project) => {
+                            const areaIds = project.epics.map(epic => epic.areaIds).flat();
+                            const teams = project.epics.map(epic => epic.teams).flat();
                             return {
                               ...project,
-                              area: [...new Set(areaIds)].map(id => cycleData.area[id]).join(', ')
+                              crew: uniq(teams).join(', '),
+                              area: uniq(areaIds).map(id => cycleData.area[id]).join(', ')
                             };
                           });
 
