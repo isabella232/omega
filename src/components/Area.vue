@@ -5,6 +5,7 @@
         <el-col class="header-logo-selector" :span="24">
           <logo></logo>
           <page-selector></page-selector>
+          <external-selector></external-selector>
         </el-col>
       </el-row>
     </el-header>
@@ -37,10 +38,11 @@
 
 <script>
 import { mapState, mapGetters } from "vuex"
+import ExternalSelector from "./ExternalSelector";
 
 export default {
   name: "Area",
-
+  components: {ExternalSelector},
   computed: {
     ...mapState(['error', 'loading']),
     ...mapGetters({

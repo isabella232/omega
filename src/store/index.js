@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
 import { areaOrderInBackend } from '../config/pages'
 import AreaData from '../libraries/areaData'
+import { calculateAreaData } from '../libraries/calculateAreaData'
 
 const uniq = (list) => [...new Set(list)];
 
@@ -15,13 +16,16 @@ export default function createStore(router) {
                 current: {}
             },
             isJiraEnabled: true,
+            onlyExternal: false,
 
-            areaDataset: null
+            areaDataset: null,
+            externalAreaDataset: null,
         },
         getters: {
             currentAreaData(state) {
-                if (!state.areaDataset) return null
-                return state.areaDataset[state.pages.current.id]
+                if (!state.areaDataset) return null;
+                const areaId = state.pages.current.id;
+                return state.onlyExternal ? state.externalAreaDataset[areaId] : state.areaDataset[areaId];
             },
 
             isOverviewPage(state) {
@@ -45,6 +49,10 @@ export default function createStore(router) {
                 state.error = error
             },
 
+            setOnlyExternal(state, onlyExternal) {
+              state.onlyExternal = onlyExternal;
+            },
+
             setCurrentPage(state, pageId) {
                 if(state.pages.all.length === 0) return null;
                 state.pages.current = state.pages.all.find((page) => page.id === pageId)
@@ -57,6 +65,10 @@ export default function createStore(router) {
 
             setAreaData(state, areaData) {
                 state.areaDataset = areaData
+            },
+
+            setExternalAreaData(state, areaData) {
+              state.externalAreaDataset = areaData;
             },
 
             setAllPages(state, areaNames) {
@@ -90,45 +102,11 @@ export default function createStore(router) {
                       const response = await fetch(`${host}/jira/overview`)
                       const areaDataset = await response.json()
                       const cycleData = areaDataset.devCycleData;
-
-                      const overview = new AreaData().applyData(cycleData);
-
-                      const areaData = { overview };
-                      Object.keys(cycleData.area).forEach((area) => {
-                        const areaObjectives = cycleData.objectives.map((objective) => {
-                          const areaRelatedProjects = objective.projects.map((project) => {
-                            return {
-                              ...project,
-                              epics: project.epics.filter(({ areaIds }) => areaIds.includes(area))
-                            };
-                          });
-
-                          const projects = areaRelatedProjects.map((project) => {
-                            const areaIds = project.epics.map(epic => epic.areaIds).flat();
-                            const teams = project.epics.map(epic => epic.teams).flat();
-                            return {
-                              ...project,
-                              crew: uniq(teams).join(', '),
-                              area: uniq(areaIds).map(id => cycleData.area[id]).join(', ')
-                            };
-                          });
-
-                          return {
-                            ...objective,
-                            projects: projects.filter(({ epics }) => epics.length !== 0)
-                          };
-                        });
-                        const objectives = areaObjectives.filter(({ projects }) => projects.length !== 0);
-
-                        if(objectives.length !== 0) {
-                          areaData[area] = new AreaData().applyData({
-                            cycle: cycleData.cycle,
-                            objectives
-                          });
-                        }
-                      })
+                      const areaData = calculateAreaData(cycleData);
+                      const externalAreaData = calculateAreaData(cycleData, (epic) => epic.isExternal)
 
                       commit('setAreaData', areaData);
+                      commit('setExternalAreaData', externalAreaData);
                       commit('setAllPages', cycleData.area);
                       commit('setCurrentPageByPath', router.currentRoute);
                       return
