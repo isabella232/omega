@@ -170,6 +170,9 @@ export default {
         return acc
       }, defaultOtherObjective)
 
+      const progressRate = summarizedOtherObjective.weeksDone / summarizedOtherObjective.weeks;
+      summarizedOtherObjective.progress = Math.round(progressRate * 100) || 0;
+
       return sortObjectives(headObjectives.concat(summarizedOtherObjective))
     },
 
