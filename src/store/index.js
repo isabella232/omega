@@ -3,8 +3,6 @@ import { areaOrderInBackend } from '../config/pages'
 import AreaData from '../libraries/areaData'
 import { calculateAreaData } from '../libraries/calculateAreaData'
 
-const uniq = (list) => [...new Set(list)];
-
 export default function createStore(router) {
     const store = new Vuex.Store({
         state: {
@@ -17,15 +15,29 @@ export default function createStore(router) {
             },
             isJiraEnabled: true,
             onlyExternal: false,
+            selectedStage: {
+              name: 'All Stages', value: 'all'
+            },
 
-            areaDataset: null,
-            externalAreaDataset: null,
+            cycleData: null,
+            areaDataset: null
         },
         getters: {
             currentAreaData(state) {
-                if (!state.areaDataset) return null;
+                if (!state.cycleData) return null;
                 const areaId = state.pages.current.id;
-                return state.onlyExternal ? state.externalAreaDataset[areaId] : state.areaDataset[areaId];
+
+                const predicates = [];
+                if(state.onlyExternal) {
+                  predicates.push((epic) => epic.isExternal);
+                }
+
+              if(state.selectedStage.value !== 'all') {
+                predicates.push((epic) => epic.stage === state.selectedStage.value);
+              }
+
+              const epicFilter = (epic) => predicates.every((predicate) => predicate(epic));
+              return calculateAreaData(state.cycleData, epicFilter)[areaId];
             },
 
             isOverviewPage(state) {
@@ -53,6 +65,10 @@ export default function createStore(router) {
               state.onlyExternal = onlyExternal;
             },
 
+            setSelectedStage(state, stage) {
+              state.selectedStage = stage;
+            },
+
             setCurrentPage(state, pageId) {
                 if(state.pages.all.length === 0) return null;
                 state.pages.current = state.pages.all.find((page) => page.id === pageId)
@@ -65,10 +81,6 @@ export default function createStore(router) {
 
             setAreaData(state, areaData) {
                 state.areaDataset = areaData
-            },
-
-            setExternalAreaData(state, areaData) {
-              state.externalAreaDataset = areaData;
             },
 
             setAllPages(state, areaNames) {
@@ -84,6 +96,10 @@ export default function createStore(router) {
               });
 
               state.pages.all = overviewPage.concat(pages);
+            },
+
+            setCycleData(state, cycleData) {
+              state.cycleData = cycleData;
             }
         },
 
@@ -103,11 +119,10 @@ export default function createStore(router) {
                       const areaDataset = await response.json()
                       const cycleData = areaDataset.devCycleData;
                       const areaData = calculateAreaData(cycleData);
-                      const externalAreaData = calculateAreaData(cycleData, (epic) => epic.isExternal)
 
                       commit('setAreaData', areaData);
-                      commit('setExternalAreaData', externalAreaData);
                       commit('setAllPages', cycleData.area);
+                      commit('setCycleData', cycleData);
                       commit('setCurrentPageByPath', router.currentRoute);
                       return
                     }
