@@ -268,6 +268,10 @@ body {
   color: #64a0b0;
 }
 
+.project-popover__epic__stage {
+  color: #64a0b0;
+}
+
 .project-popover__epic__status {
   width: 80px;
   position: absolute;

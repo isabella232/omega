@@ -55,6 +55,9 @@
                   <a :href="epic.url" class="jira-link" target="_blank">
                     {{ epic.name }}
                     <i class="el-icon-link"></i>
+                    <span class="project-popover__epic__stage">
+                      {{ epic.stage }}
+                    </span>
                   </a>
                 </div>
                 <div class="project-popover__epic__effort">
