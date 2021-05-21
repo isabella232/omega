@@ -1,6 +1,4 @@
 import Vuex from 'vuex'
-import { areaOrderInBackend } from '../config/pages'
-import AreaData from '../libraries/areaData'
 import { calculateAreaData } from '../libraries/calculateAreaData'
 
 export default function createStore(router) {
@@ -13,7 +11,6 @@ export default function createStore(router) {
                 all: [],
                 current: {}
             },
-            isJiraEnabled: true,
             onlyExternal: false,
             selectedStage: {
               name: 'All Stages', value: 'all'
@@ -110,67 +107,19 @@ export default function createStore(router) {
             },
 
             async fetchAreaData({ state, commit }) {
-                // const host = 'http://localhost:3131';
-                const host = 'https://omega-data.gservice.emarsys.net';
+                const host = 'http://localhost:3131';
+                // const host = 'https://omega-data.gservice.emarsys.net';
                 commit('clearError')
                 try {
-                    if(state.isJiraEnabled) {
-                      const response = await fetch(`${host}/jira/overview`)
-                      const areaDataset = await response.json()
-                      const cycleData = areaDataset.devCycleData;
-                      const areaData = calculateAreaData(cycleData);
+                    const response = await fetch(`${host}/jira/overview`)
+                    const areaDataset = await response.json()
+                    const cycleData = areaDataset.devCycleData;
+                    const areaData = calculateAreaData(cycleData);
 
-                      commit('setAreaData', areaData);
-                      commit('setAllPages', cycleData.area);
-                      commit('setCycleData', cycleData);
-                      commit('setCurrentPageByPath', router.currentRoute);
-                      return
-                    }
-
-                    let response = await fetch(`${host}/overview`)
-                    let areaDataset = await response.json()
-
-                    let areaData = {}
-
-                    areaDataset.forEach((specificAreaData, i) => {
-                        areaData[areaOrderInBackend[i]] = new AreaData().applyData(specificAreaData.devCycleData)
-                    })
-
-                    // Overview
-                    let devCycleData = { cycle: areaDataset[0].devCycleData.cycle, objectives: [] };
-
-                    //enhancing each project with area field
-                    areaDataset = areaDataset.map((areaData, i) => {
-                        areaData.devCycleData.objectives = areaData.devCycleData.objectives.map((objective) => {
-                            objective.projects = objective.projects.map((project) => {
-                                project.area = state.pages.all.find((page) => page.id === areaOrderInBackend[i]).name
-                                return project
-                            })
-
-                            return objective
-                        })
-
-                        return areaData
-                    });
-
-                    //merge projects which belongs to different areas into the same objective
-                    let areasObjectives = areaDataset.map((areaData) => areaData.devCycleData.objectives)
-                    devCycleData.objectives = areasObjectives.reduce((acc, areaObjectives) => {
-                        areaObjectives.forEach((areaObjective) => {
-                            let indexInAcc = acc.findIndex((el) => el.objective === areaObjective.objective)
-                            if (indexInAcc < 0) {
-                                acc.push(areaObjective)
-                            } else {
-                                acc[indexInAcc].projects = acc[indexInAcc].projects.concat(areaObjective.projects)
-                            }
-                        });
-
-                        return acc
-                    }, [])
-
-                    areaData.overview = new AreaData().applyData(devCycleData)
-
-                    commit('setAreaData', areaData)
+                    commit('setAreaData', areaData);
+                    commit('setAllPages', cycleData.area);
+                    commit('setCycleData', cycleData);
+                    commit('setCurrentPageByPath', router.currentRoute);
                 } catch (e) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
