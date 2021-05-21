@@ -107,8 +107,8 @@ export default function createStore(router) {
             },
 
             async fetchAreaData({ state, commit }) {
-                const host = 'http://localhost:3131';
-                // const host = 'https://omega-data.gservice.emarsys.net';
+                // const host = 'http://localhost:3131';
+                const host = 'https://omega-data.gservice.emarsys.net';
                 commit('clearError')
                 try {
                     const response = await fetch(`${host}/jira/overview`)
