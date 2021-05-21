@@ -56,7 +56,7 @@
                     {{ epic.name }}
                     <i class="el-icon-link"></i>
                   </a>
-                  <span class="project-popover__epic__stage">
+                  <span v-if="epic.stage" class="project-popover__epic__stage">
                     {{ epic.stage }}
                   </span>
                 </div>
