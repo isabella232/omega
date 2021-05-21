@@ -269,7 +269,12 @@ body {
 }
 
 .project-popover__epic__stage {
-  color: #64a0b0;
+  background: rgb(64, 135, 126);
+  border: 1px solid rgb(64, 135, 126);
+  border-radius: 12px;
+  padding: 0 8px;
+  text-align: center;
+  width: fit-content;
 }
 
 .project-popover__epic__status {
