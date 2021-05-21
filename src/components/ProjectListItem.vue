@@ -56,9 +56,9 @@
                     {{ epic.name }}
                     <i class="el-icon-link"></i>
                   </a>
-                  <div class="project-popover__epic__stage">
+                  <span class="project-popover__epic__stage">
                     {{ epic.stage }}
-                  </div>
+                  </span>
                 </div>
                 <div class="project-popover__epic__effort">
                   {{ epic.effort }}

@@ -274,7 +274,6 @@ body {
   border-radius: 12px;
   padding: 0 8px;
   text-align: center;
-  width: fit-content;
 }
 
 .project-popover__epic__status {
