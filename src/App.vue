@@ -15,7 +15,7 @@ export default {
   computed: {...mapState(['loading'])},
 
   async created() {
-    await this.loadOmegaData()
+    await this.loadSprints()
     this.keepOmegaDataUpdated()
   },
 
@@ -25,8 +25,8 @@ export default {
 
   methods: {
 
-    async loadOmegaData() {
-      await this.$store.dispatch('fetchAreaDataWithLoader')
+    async loadSprints() {
+      await this.$store.dispatch('fetchSprints');
     },
 
     keepOmegaDataUpdated() {
