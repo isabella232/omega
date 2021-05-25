@@ -5,6 +5,7 @@
         <el-col class="header-logo-selector" :span="24">
           <logo></logo>
           <page-selector></page-selector>
+          <sprint-selector v-if="false"></sprint-selector>
           <stage-selector></stage-selector>
           <external-selector></external-selector>
         </el-col>
@@ -41,10 +42,11 @@
 import { mapState, mapGetters } from "vuex"
 import ExternalSelector from "./ExternalSelector";
 import StageSelector from "./StageSelector";
+import SprintSelector from "./SprintSelector";
 
 export default {
   name: "Area",
-  components: {ExternalSelector, StageSelector},
+  components: {ExternalSelector, StageSelector, SprintSelector},
   computed: {
     ...mapState(['error', 'loading']),
     ...mapGetters({
