@@ -1,11 +1,11 @@
 <template>
-  <el-container v-show="!loading">
+  <el-container v-if="!loading">
     <el-header height="50px">
       <el-row type="flex" class="row-bg" justify="start">
         <el-col class="header-logo-selector" :span="24">
           <logo></logo>
           <page-selector></page-selector>
-          <sprint-selector v-if="false"></sprint-selector>
+          <sprint-selector></sprint-selector>
           <stage-selector></stage-selector>
           <external-selector></external-selector>
         </el-col>

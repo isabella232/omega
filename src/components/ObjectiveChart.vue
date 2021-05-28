@@ -194,7 +194,7 @@ export default {
 
       let longestObjective = objectives[0]
 
-      objectives = objectives.map((objective, i) => {
+      return objectives.map((objective, i) => {
         let relativeModifierToLongest = objective.weeks / longestObjective.weeks;
         let trackLength = Math.ceil(relativeModifierToLongest * 100 * 1.1) ||  0;
 
@@ -214,8 +214,6 @@ export default {
           progressOnTrack
         }
       })
-
-      return objectives
     },
 
     objectiveTracks() {
