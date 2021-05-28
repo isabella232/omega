@@ -890,6 +890,10 @@ body {
     .global-objectives__progress__title {
         font-size: 14px;
     }
+
+    .el-header {
+      height: fit-content !important;
+    }
   }
 
 
