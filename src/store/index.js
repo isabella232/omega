@@ -116,9 +116,9 @@ export default function createStore(router) {
                 router.push({ path: state.pages.current.path })
             },
 
-            fetchSprint({ commit, dispatch }, selectedSprint) {
+            async fetchSprint({ commit, dispatch }, selectedSprint) {
               commit('setSelectedSprint', selectedSprint);
-              dispatch('fetchAreaDataWithLoader');
+              await dispatch('fetchAreaDataWithLoader');
             },
 
             async fetchAreaData({ state, commit }) {
@@ -126,9 +126,15 @@ export default function createStore(router) {
                 const host = 'https://omega-data.gservice.emarsys.net';
                 commit('clearError')
                 try {
-                    const url = `${host}/jira/overview?sprintId=${state.selectedSprint.id}`
-                    const response = await fetch(url)
-                    const areaDataset = await response.json()
+                    let url = `${host}/jira/overview`
+
+                    if (state.selectedSprint) {
+                      const query = `?sprintId=${state.selectedSprint.id}`;
+                      url = url + query;
+                    }
+                    const response = await fetch(url);
+                    const areaDataset = await response.json();
+                    const sprints = areaDataset.sprints;
                     const cycleData = areaDataset.devCycleData;
                     const areaData = calculateAreaData(cycleData);
 
@@ -136,6 +142,8 @@ export default function createStore(router) {
                     commit('setAllPages', cycleData.area);
                     commit('setCycleData', cycleData);
                     commit('setCurrentPageByPath', router.currentRoute);
+                    commit('setSprints', sprints);
+                    commit('setSelectedSprint', cycleData.cycle);
                 } catch (e) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
@@ -146,24 +154,6 @@ export default function createStore(router) {
                 commit('loadingOn')
                 await dispatch('fetchAreaData')
                 commit('loadingOff')
-            },
-
-            async fetchSprints({ commit, dispatch }) {
-              // const host = 'http://localhost:3131';
-              const host = 'https://omega-data.gservice.emarsys.net';
-              commit('clearError')
-              try {
-                const url = `${host}/jira/sprints`
-                const response = await fetch(url);
-                const { sprints } = await response.json();
-
-                commit('setSprints', sprints);
-                commit('setSelectedSprint', sprints.find(s => s.state === 'active'));
-                dispatch('fetchAreaDataWithLoader');
-              } catch (e) {
-                console.error('Error on loading sprints', e)
-                commit('setError', 'Error :(')
-              }
             }
         }
     })

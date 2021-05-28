@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
 
 const deepCopy = function(src) {
   return JSON.parse(JSON.stringify(src));
