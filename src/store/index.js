@@ -12,12 +12,11 @@ export default function createStore(router) {
                 current: {}
             },
             onlyExternal: false,
-            selectedStage: {
-              name: 'All stages', value: 'all'
-            },
 
             cycleData: null,
             areaDataset: null,
+            stages: [],
+            selectedStage: null,
             sprints: [],
             selectedSprint: null,
             assignees: [],
@@ -68,6 +67,10 @@ export default function createStore(router) {
 
             setOnlyExternal(state, onlyExternal) {
               state.onlyExternal = onlyExternal;
+            },
+
+            setStages(state, stages) {
+              state.stages = stages
             },
 
             setSelectedStage(state, stage) {
@@ -149,6 +152,7 @@ export default function createStore(router) {
                     const response = await fetch(url);
                     const areaDataset = await response.json();
                     const sprints = areaDataset.sprints;
+                    const stages = areaDataset.stages;
                     const cycleData = areaDataset.devCycleData;
                     const assignees = cycleData.assignees;
                     const areaData = calculateAreaData(cycleData);
@@ -159,6 +163,8 @@ export default function createStore(router) {
                     commit('setCurrentPageByPath', router.currentRoute);
                     commit('setSprints', sprints);
                     commit('setSelectedSprint', cycleData.cycle);
+                    commit('setStages', stages);
+                    commit('setSelectedStage', stages[0]);
                     commit('setAssignees', assignees);
                     commit('setSelectedAssignee', assignees[0]);
                 } catch (e) {
