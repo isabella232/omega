@@ -349,6 +349,11 @@ body {
   float: right;
 }
 
+.assignee-dropdown {
+  height:300px;
+  overflow: auto;
+}
+
 .area-name {
   cursor: pointer;
   font-size: 24px;

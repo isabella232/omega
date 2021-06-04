@@ -8,6 +8,7 @@
           <sprint-selector></sprint-selector>
           <stage-selector></stage-selector>
           <external-selector></external-selector>
+          <assignee-selector></assignee-selector>
         </el-col>
       </el-row>
     </el-header>
@@ -43,10 +44,11 @@ import { mapState, mapGetters } from "vuex"
 import ExternalSelector from "./ExternalSelector";
 import StageSelector from "./StageSelector";
 import SprintSelector from "./SprintSelector";
+import AssigneeSelector from "./AssigneeSelector";
 
 export default {
   name: "Area",
-  components: {ExternalSelector, StageSelector, SprintSelector},
+  components: {ExternalSelector, StageSelector, SprintSelector, AssigneeSelector},
   computed: {
     ...mapState(['error', 'loading']),
     ...mapGetters({

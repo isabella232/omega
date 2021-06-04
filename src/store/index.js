@@ -13,13 +13,15 @@ export default function createStore(router) {
             },
             onlyExternal: false,
             selectedStage: {
-              name: 'All Stages', value: 'all'
+              name: 'All stages', value: 'all'
             },
 
             cycleData: null,
             areaDataset: null,
             sprints: [],
-            selectedSprint: null
+            selectedSprint: null,
+            assignees: [],
+            selectedAssignee: null
         },
         getters: {
             currentAreaData(state) {
@@ -33,6 +35,10 @@ export default function createStore(router) {
 
               if(state.selectedStage.value !== 'all') {
                 predicates.push((epic) => epic.stage === state.selectedStage.value);
+              }
+
+              if(state.selectedAssignee.accountId !== 'all') {
+                predicates.push((epic) => epic.assignee && epic.assignee.accountId === state.selectedAssignee.accountId);
               }
 
               const epicFilter = (epic) => predicates.every((predicate) => predicate(epic));
@@ -90,6 +96,14 @@ export default function createStore(router) {
               state.selectedSprint = selectedSprint;
             },
 
+            setAssignees(state, assignees) {
+              state.assignees = assignees
+            },
+
+            setSelectedAssignee(state, selectedAssignee) {
+              state.selectedAssignee = selectedAssignee;
+            },
+
             setAllPages(state, areaNames) {
               const overviewPage = [{ id: 'overview', name: 'Overview', path: '/' }];
               const pages = Object.keys(areaNames)
@@ -136,6 +150,7 @@ export default function createStore(router) {
                     const areaDataset = await response.json();
                     const sprints = areaDataset.sprints;
                     const cycleData = areaDataset.devCycleData;
+                    const assignees = cycleData.assignees;
                     const areaData = calculateAreaData(cycleData);
 
                     commit('setAreaData', areaData);
@@ -144,6 +159,8 @@ export default function createStore(router) {
                     commit('setCurrentPageByPath', router.currentRoute);
                     commit('setSprints', sprints);
                     commit('setSelectedSprint', cycleData.cycle);
+                    commit('setAssignees', assignees);
+                    commit('setSelectedAssignee', assignees[0]);
                 } catch (e) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
