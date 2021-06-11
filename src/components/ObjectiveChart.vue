@@ -186,7 +186,7 @@ export default {
         },
         colors: ['#d3dc2d', '#56c5c9', '#6879ae', '#3a5684', '#40877e', '#87991a', '#efab00', '#d8d8d8'],
         fill: {
-          opacity: 0.4
+          opacity: 0.3
         }
       },
 
