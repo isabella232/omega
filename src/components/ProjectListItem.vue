@@ -31,6 +31,9 @@
                   of {{ project.weeks }} weeks
                 </div>
               </template>
+              <template v-else-if="project.weeks === project.weeksPostponed">
+                <div class="project-popover__header__progress">Postponed</div>
+              </template>
               <template v-else>
                 <div class="project-popover__header__progress">Cancelled</div>
               </template>
@@ -86,6 +89,7 @@
               <strong>{{ project.weeksDone }}</strong>
               of {{ project.weeks }} wks
             </div>
+            <div v-else-if="project.weeks === project.weeksPostponed" class="epic-container-column__project__epic-counts">Postponed</div>
             <div v-else class="epic-container-column__project__epic-counts">Cancelled</div>
           </div>
         </el-row>

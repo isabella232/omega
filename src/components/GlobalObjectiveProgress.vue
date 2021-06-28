@@ -8,9 +8,20 @@
 
       <div
         class="global-objectives__progress__bar"
-        v-bind:style="{'--percentage': cycle.progress + '%', '--percentage-with-in-progress': cycle.progressWithInProgress + '%', '--percentage-not-to-do': cycle.percentageNotToDo + '%'}"
+        v-bind:style="{'--percentage': (cycle.percentageNotToDo + cycle.progress) + '%', '--percentage-with-in-progress': (cycle.percentageNotToDo + cycle.progressWithInProgress) + '%', '--percentage-not-to-do': cycle.percentageNotToDo + '%'}"
       >
-        <div></div>
+        <el-tooltip placement="top-end">
+          <div slot="content">In Progress</div>
+          <div class="global-objectives__progress__bar_inprogress"></div>
+        </el-tooltip>
+        <el-tooltip placement="top-end">
+          <div slot="content">Done</div>
+          <div class="global-objectives__progress__bar_done"></div>
+        </el-tooltip>
+        <el-tooltip placement="top-end">
+          <div slot="content">Cancelled / Postponed</div>
+          <div class="global-objectives__progress__bar_nottodo"></div>
+        </el-tooltip>
       </div>
 
       <div class="global-objectives__time__bar">
@@ -35,25 +46,37 @@
     </div>
 
     <el-row type="flex" justify="start">
-      <el-col :xs="8" :sm="6">
+      <el-col :xs="8" :sm="4">
         <div class="global-objectives__progress__value-container">
           <div class="global-objectives__progress_value">{{ cycle.weeks }} wks</div>
           <div class="global-objectives__progress__title">Estimation</div>
         </div>
       </el-col>
-      <el-col :xs="8" :sm="6">
+      <el-col :xs="8" :sm="4">
         <div class="global-objectives__progress__value-container">
           <div class="global-objectives__progress_value">{{ cycle.weeksDone }} wks</div>
           <div class="global-objectives__progress__title">Done</div>
         </div>
       </el-col>
-      <el-col class="hidden-xs-only" :sm="6">
+      <el-col class="hidden-xs-only" :sm="4">
         <div class="global-objectives__progress__value-container">
           <div class="global-objectives__progress_value">{{ cycle.weeksInProgress }} wks</div>
           <div class="global-objectives__progress__title">In Progress</div>
         </div>
       </el-col>
-      <el-col :xs="8" :sm="6">
+      <el-col class="hidden-xs-only" :sm="4">
+        <div class="global-objectives__progress__value-container">
+          <div class="global-objectives__progress_value">{{ cycle.weeksCancelled }} wks</div>
+          <div class="global-objectives__progress__title">Cancelled</div>
+        </div>
+      </el-col>
+      <el-col class="hidden-xs-only" :sm="4">
+        <div class="global-objectives__progress__value-container">
+          <div class="global-objectives__progress_value">{{ cycle.weeksPostponed }} wks</div>
+          <div class="global-objectives__progress__title">Postponed</div>
+        </div>
+      </el-col>
+      <el-col :xs="8" :sm="4">
         <div class="global-objectives__progress__value-container">
           <div
             class="global-objectives__progress_value"

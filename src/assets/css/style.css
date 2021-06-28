@@ -754,7 +754,10 @@ body {
     margin-top: 27px;
 }
 
-.global-objectives__progress__bar:before, .global-objectives__progress__bar:after {
+.global-objectives__progress__bar .global-objectives__progress__bar_inprogress,
+.global-objectives__progress__bar .global-objectives__progress__bar_done,
+.global-objectives__progress__bar .global-objectives__progress__bar_nottodo,
+.global-objectives__progress__bar:before {
     content: " ";
     position: absolute;
     display: block;
@@ -762,6 +765,23 @@ body {
     border-radius: 10px;
     background: #102648;
     width: 100%;
+}
+
+.global-objectives__progress__bar .global-objectives__progress__bar_inprogress {
+  width: var(--percentage-with-in-progress);
+  background: #63bb61;
+  background: url(../stripe7.gif) center center repeat-x;
+  opacity: 0.8;
+}
+
+.global-objectives__progress__bar .global-objectives__progress__bar_done {
+  width: var(--percentage);
+  background: #63bb61;
+}
+
+.global-objectives__progress__bar .global-objectives__progress__bar_nottodo {
+  width: var(--percentage-not-to-do);
+  background: #E63939;
 }
 
 .global-objectives__progress__bar:after {
@@ -833,7 +853,7 @@ body {
 }
 
 .global-objectives__progress-gt4 .global-objectives__progress__title {
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .global-objectives__progress_value {
@@ -841,7 +861,7 @@ body {
 }
 
 .global-objectives__progress-gt4 .global-objectives__progress_value {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 

@@ -21,6 +21,8 @@ export default class AreaData {
     weeksDone: 0,
     weeksInProgress: 0,
     weeksNotToDo: 0,
+    weeksCancelled: 0,
+    weeksPostponed: 0,
     epicsCount: 0,
     epicsDoneCount: 0,
     percentageNotToDo: 0
@@ -45,6 +47,8 @@ export default class AreaData {
         weeksDone: 0,
         weeksInProgress: 0,
         weeksNotToDo: 0,
+        weeksCancelled: 0,
+        weeksPostponed: 0,
         progress: 0,
         progressWithInProgress: 0,
         progressByEpics: 0,
@@ -65,6 +69,8 @@ export default class AreaData {
           weeksInProgress: 0,
           weeksTodo: 0,
           weeksNotToDo: 0,
+          weeksCancelled: 0,
+          weeksPostponed: 0,
           progress: 0,
           progressWithInProgress: 0,
           progressByEpics: 0,
@@ -88,8 +94,12 @@ export default class AreaData {
             preparedProject.epicsDoneCount += 1
           } else if (epic.status == STATUS.IN_PROGRESS) {
             preparedProject.weeksInProgress += epic.effort
-          } else if (epic.status == STATUS.POSTPONED || epic.status == STATUS.CANCELLED) {
+          } else if (epic.status == STATUS.POSTPONED) {
             preparedProject.weeksNotToDo += epic.effort
+            preparedProject.weeksPostponed += epic.effort
+          } else if (epic.status == STATUS.CANCELLED) {
+            preparedProject.weeksNotToDo += epic.effort
+            preparedProject.weeksCancelled += epic.effort
           }
         })
 
@@ -103,6 +113,8 @@ export default class AreaData {
         preparedObjective.weeksInProgress = this.normalize(preparedObjective.weeksInProgress + preparedProject.weeksInProgress)
         preparedObjective.weeksTodo = this.normalize(preparedObjective.weeksTodo + preparedProject.weeksTodo)
         preparedObjective.weeksNotToDo = this.normalize(preparedObjective.weeksNotToDo + preparedProject.weeksNotToDo)
+        preparedObjective.weeksCancelled = this.normalize(preparedObjective.weeksCancelled + preparedProject.weeksCancelled)
+        preparedObjective.weeksPostponed = this.normalize(preparedObjective.weeksPostponed + preparedProject.weeksPostponed)
 
         preparedObjective.epicsCount += preparedProject.epicsCount
         preparedObjective.epicsDoneCount += preparedProject.epicsDoneCount
@@ -115,6 +127,8 @@ export default class AreaData {
       this.cycle.weeksInProgress = this.normalize(this.cycle.weeksInProgress + preparedObjective.weeksInProgress)
       this.cycle.weeksTodo = this.normalize(this.cycle.weeksTodo + preparedObjective.weeksTodo)
       this.cycle.weeksNotToDo = this.normalize(this.cycle.weeksNotToDo + preparedObjective.weeksNotToDo)
+      this.cycle.weeksCancelled = this.normalize(this.cycle.weeksCancelled + preparedObjective.weeksCancelled)
+      this.cycle.weeksPostponed = this.normalize(this.cycle.weeksPostponed + preparedObjective.weeksPostponed)
 
       this.cycle.epicsCount += preparedObjective.epicsCount
       this.cycle.epicsDoneCount += preparedObjective.epicsDoneCount
