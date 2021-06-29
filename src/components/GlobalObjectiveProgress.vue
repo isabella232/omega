@@ -8,17 +8,17 @@
 
       <div
         class="global-objectives__progress__bar"
-        v-bind:style="{'--percentage': (cycle.percentageNotToDo + cycle.progress) + '%', '--percentage-with-in-progress': (cycle.percentageNotToDo + cycle.progressWithInProgress) + '%', '--percentage-not-to-do': cycle.percentageNotToDo + '%'}"
+        v-bind:style="{'--percentage': cycle.progress + '%', '--percentage-with-in-progress': cycle.progressWithInProgress + '%', '--percentage-not-to-do': cycle.percentageNotToDo + '%'}"
       >
         <el-tooltip placement="top-end">
           <div slot="content">In Progress</div>
           <div class="global-objectives__progress__bar_inprogress"></div>
         </el-tooltip>
-        <el-tooltip placement="top-end">
+        <el-tooltip placement="top">
           <div slot="content">Done</div>
           <div class="global-objectives__progress__bar_done"></div>
         </el-tooltip>
-        <el-tooltip placement="top-end">
+        <el-tooltip placement="top">
           <div slot="content">Cancelled / Postponed</div>
           <div class="global-objectives__progress__bar_nottodo"></div>
         </el-tooltip>
