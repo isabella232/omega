@@ -11,14 +11,14 @@ export default function createStore(router) {
                 all: [],
                 current: {}
             },
-            onlyExternal: false,
+            onlyExternal: JSON.parse(localStorage.onlyExternal),
 
             cycleData: null,
             areaDataset: null,
             stages: [],
-            selectedStage: null,
+            selectedStage: localStorage.selectedStage ? JSON.parse(localStorage.selectedStage) : null,
             sprints: [],
-            selectedSprint: null,
+            selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
             selectedAssignee: null
         },
@@ -66,6 +66,7 @@ export default function createStore(router) {
             },
 
             setOnlyExternal(state, onlyExternal) {
+              localStorage.onlyExternal = onlyExternal;
               state.onlyExternal = onlyExternal;
             },
 
@@ -74,6 +75,7 @@ export default function createStore(router) {
             },
 
             setSelectedStage(state, stage) {
+              localStorage.selectedStage = JSON.stringify(stage);
               state.selectedStage = stage;
             },
 
@@ -96,6 +98,7 @@ export default function createStore(router) {
             },
 
             setSelectedSprint(state, selectedSprint) {
+              localStorage.selectedSprint = JSON.stringify(selectedSprint);
               state.selectedSprint = selectedSprint;
             },
 
@@ -164,7 +167,10 @@ export default function createStore(router) {
                     commit('setSprints', sprints);
                     commit('setSelectedSprint', cycleData.cycle);
                     commit('setStages', stages);
-                    commit('setSelectedStage', stages[0]);
+
+                    if (!state.selectedStage) {
+                      commit('setSelectedStage', stages[0]);
+                    }
                     commit('setAssignees', assignees);
                     commit('setSelectedAssignee', assignees[0]);
                 } catch (e) {
