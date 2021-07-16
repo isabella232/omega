@@ -11,7 +11,7 @@ export default function createStore(router) {
                 all: [],
                 current: {}
             },
-            onlyExternal: JSON.parse(localStorage.onlyExternal),
+            onlyExternal: localStorage.onlyExternal ? JSON.parse(localStorage.onlyExternal) : false,
 
             cycleData: null,
             areaDataset: null,
