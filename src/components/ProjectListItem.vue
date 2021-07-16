@@ -52,7 +52,7 @@
                 class="project-popover__epic"
                 :class="epic.status | healthClassFromStatus"
                 v-for="epic in project.epics"
-                :key="epic.name"
+                :key="epic.name + epic.stage"
               >
                 <div class="project-popover__epic__name">
                   <a :href="epic.url" class="jira-link" target="_blank">
