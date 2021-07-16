@@ -20,7 +20,7 @@ export default function createStore(router) {
             sprints: [],
             selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
-            selectedAssignee: null
+            selectedAssignee: localStorage.selectedAssignee ? JSON.parse(localStorage.selectedAssignee) : null
         },
         getters: {
             currentAreaData(state) {
@@ -107,6 +107,7 @@ export default function createStore(router) {
             },
 
             setSelectedAssignee(state, selectedAssignee) {
+              localStorage.selectedAssignee = JSON.stringify(selectedAssignee);
               state.selectedAssignee = selectedAssignee;
             },
 
@@ -171,8 +172,12 @@ export default function createStore(router) {
                     if (!state.selectedStage) {
                       commit('setSelectedStage', stages[0]);
                     }
+
                     commit('setAssignees', assignees);
-                    commit('setSelectedAssignee', assignees[0]);
+
+                    if (!state.selectedAssignee) {
+                      commit('setSelectedAssignee', assignees[0]);
+                    }
                 } catch (e) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
