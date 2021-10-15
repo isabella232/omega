@@ -276,6 +276,26 @@ body {
   text-align: center;
 }
 
+.project-popover__epic__validation {
+  color: red;
+  padding: 2px;
+  margin-top: 4px;
+}
+
+.validation-dialog a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.validation-dialog {
+  background: #11264a;
+  color: #fff;
+}
+
+.validation-dialog .jira-link {
+  text-align: center;
+}
+
 .project-popover__epic__status {
   width: 80px;
   position: absolute;
@@ -347,6 +367,11 @@ body {
   margin-top: 4px;
   margin-left: 10px;
   float: right;
+}
+
+.external-selector.validation-selector {
+  cursor: pointer;
+  color: #fff;
 }
 
 .assignee-dropdown {

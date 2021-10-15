@@ -5,6 +5,7 @@
         <el-col class="header-logo-selector" :span="24">
           <logo></logo>
           <page-selector></page-selector>
+          <validation-selector></validation-selector>
           <sprint-selector></sprint-selector>
           <stage-selector></stage-selector>
           <external-selector></external-selector>
@@ -30,12 +31,32 @@
           <div class="epic-container-column">
             <template v-for="objective in areaData.objectives">
               <objective-list-item :objective="objective" :key="objective.name"></objective-list-item>
-              <project-list-item v-for="project in objective.projects" :key="objective.name + project.name" :project="project" :show-area="isOverviewPage"></project-list-item>
+              <project-list-item v-for="project in objective.projects" :key="objective.name + project.name" :project="project" :show-area="isOverviewPage" @showValidation="showValidation"></project-list-item>
             </template>
           </div>
         </el-row>
       </div>
     </el-main>
+    <el-dialog :visible.sync="dialogOpen" custom-class="validation-dialog">
+      <div v-if="selectedEpic">
+        <h3>
+          <a :href="selectedEpic.url" class="jira-link" target="_blank">
+            {{ selectedEpic.ticketId + ': ' + selectedEpic.name }}
+            <i class="el-icon-link"></i>
+          </a>
+        </h3>
+        <el-divider></el-divider>
+        <p>Found issues:</p>
+        <ul>
+          <li v-for="validation in selectedEpic.validations" :key="validation.label">
+            <a :href="validation.reference" target="_blank">
+              {{ validation.label }}
+              <i class="el-icon-link"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -45,16 +66,30 @@ import ExternalSelector from "./ExternalSelector";
 import StageSelector from "./StageSelector";
 import SprintSelector from "./SprintSelector";
 import AssigneeSelector from "./AssigneeSelector";
+import ValidationSelector from "./ValidationSelector";
 
 export default {
   name: "Area",
-  components: {ExternalSelector, StageSelector, SprintSelector, AssigneeSelector},
+  components: {ValidationSelector, ExternalSelector, StageSelector, SprintSelector, AssigneeSelector},
+  data: () => ({
+    dialogOpen: false,
+    selectedEpic: null
+  }),
   computed: {
     ...mapState(['error', 'loading']),
     ...mapGetters({
       areaData: 'currentAreaData',
       isOverviewPage: 'isOverviewPage'
     })
+  },
+  methods: {
+    showValidation(epic) {
+      this.dialogOpen = true;
+      this.selectedEpic = epic;
+    },
+    closeDialog() {
+      this.dialogOpen = false;
+    }
   }
 }
 </script>

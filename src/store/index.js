@@ -20,6 +20,7 @@ export default function createStore(router) {
             sprints: [],
             selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
+            validationEnabled: localStorage.validationEnabled ? JSON.parse(localStorage.validationEnabled) : true,
             selectedAssignee: localStorage.selectedAssignee ? JSON.parse(localStorage.selectedAssignee) : null
         },
         getters: {
@@ -128,7 +129,12 @@ export default function createStore(router) {
 
             setCycleData(state, cycleData) {
               state.cycleData = cycleData;
-            }
+            },
+
+            toggleValidation(state) {
+              state.validationEnabled = !state.validationEnabled;
+              localStorage.validationEnabled = state.validationEnabled;
+          }
         },
 
         actions: {

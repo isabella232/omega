@@ -62,6 +62,11 @@
                   <span v-if="epic.stage" class="project-popover__epic__stage">
                     {{ epic.stage }}
                   </span>
+                  <template v-if="validationEnabled && epic.validations.length > 0">
+                    <el-tooltip :content="'Found ' + epic.validations.length + ' issue, click to see details'" placement="bottom" effect="dark">
+                      <span class="el-icon-s-flag project-popover__epic__validation" @click="showValidation(epic)"></span>
+                    </el-tooltip>
+                  </template>
                 </div>
                 <div class="project-popover__epic__effort">
                   {{ epic.effort }}
@@ -113,10 +118,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'project-list-item',
 
   props: ['project', 'showArea'],
+
+  computed: mapState(['validationEnabled']),
 
   methods: {
     hidePopover(id) {
@@ -128,6 +137,9 @@ export default {
       setTimeout(() => { this.$refs[id].doClose(); }, 100)
       setTimeout(() => { this.$refs[id].doClose(); }, 200)
       setTimeout(() => { this.$refs[id].doClose(); }, 300)
+    },
+    showValidation(epic) {
+      this.$emit('showValidation', epic);
     }
   }
 }
