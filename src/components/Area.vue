@@ -38,17 +38,17 @@
       </div>
     </el-main>
     <el-dialog :visible.sync="dialogOpen" custom-class="validation-dialog">
-      <div v-if="selectedEpic">
+      <div v-if="selectedIssue">
         <h3>
-          <a :href="selectedEpic.url" class="jira-link" target="_blank">
-            {{ selectedEpic.ticketId + ': ' + selectedEpic.name }}
+          <a :href="selectedIssue.url" class="jira-link" target="_blank">
+            {{ selectedIssue.ticketId + ': ' + selectedIssue.name }}
             <i class="el-icon-link"></i>
           </a>
         </h3>
         <el-divider></el-divider>
         <p>Found issues:</p>
         <ul>
-          <li v-for="validation in selectedEpic.validations" :key="validation.label">
+          <li v-for="validation in selectedIssue.validations" :key="validation.label">
             <a :href="validation.reference" target="_blank">
               {{ validation.label }}
               <i class="el-icon-link"></i>
@@ -73,7 +73,7 @@ export default {
   components: {ValidationSelector, ExternalSelector, StageSelector, SprintSelector, AssigneeSelector},
   data: () => ({
     dialogOpen: false,
-    selectedEpic: null
+    selectedIssue: null
   }),
   computed: {
     ...mapState(['error', 'loading']),
@@ -83,9 +83,9 @@ export default {
     })
   },
   methods: {
-    showValidation(epic) {
+    showValidation(issue) {
       this.dialogOpen = true;
-      this.selectedEpic = epic;
+      this.selectedIssue = issue;
     },
     closeDialog() {
       this.dialogOpen = false;

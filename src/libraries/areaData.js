@@ -61,6 +61,8 @@ export default class AreaData {
           area: project.area,
           name: project.name,
           owner: project.crew,
+          ticketId: project.projectId,
+          validations: project.validations,
           startDate: project.startDate,
           epicsCount: 0,
           epicsDoneCount: 0,

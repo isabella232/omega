@@ -19,6 +19,11 @@
                   {{ project.name }}
                   <i class="el-icon-link"></i>
                 </a>
+                <template v-if="validationEnabled && project.validations.length > 0">
+                  <el-tooltip :content="'Found ' + project.validations.length + ' issue, click to see details'" placement="bottom" effect="dark">
+                    <span class="el-icon-s-flag project-popover__epic__validation" @click="showValidation(project)"></span>
+                  </el-tooltip>
+                </template>
               </div>
 
               <template v-if="project.weeks === 0">
