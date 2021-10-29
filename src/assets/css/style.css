@@ -282,6 +282,11 @@ body {
   margin-top: 4px;
 }
 
+.epic-container-column__project__title .project-popover__epic__validation {
+  margin-top: 0;
+  padding: 0;
+}
+
 .validation-dialog a {
   color: #fff;
   text-decoration: none;

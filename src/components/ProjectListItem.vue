@@ -93,7 +93,14 @@
         <el-row>
           <div>
             <div v-if="showArea" class="epic-container-column__project__area">{{ project.area }}</div>
-            <div class="epic-container-column__project__title">{{ project.name }}</div>
+            <div class="epic-container-column__project__title">
+              <template v-if="validationEnabled && project.aggregatedValidations.length > 0">
+                <el-tooltip :content="'Found ' + project.aggregatedValidations.length + ' issue'" placement="bottom" effect="dark">
+                  <span class="el-icon-s-flag project-popover__epic__validation"></span>
+                </el-tooltip>
+              </template>
+              {{ project.name }}
+            </div>
             <div v-if="project.weeks === 0" class="epic-container-column__project__epic-counts">TBD</div>
             <div v-else-if="project.weeks != project.weeksNotToDo" class="epic-container-column__project__epic-counts">
               <strong>{{ project.weeksDone }}</strong>

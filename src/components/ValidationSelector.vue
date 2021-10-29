@@ -7,14 +7,16 @@
   </el-tooltip>
 </template>
 <script>
-import {mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: "validationSelector",
   computed: {
     ...mapState(['validationEnabled']),
+    ...mapGetters(['validationSummary']),
     tooltipContent() {
-      return this.validationEnabled ? 'Hide validation' : 'Show validation';
+      const issueText = `(${this.validationSummary.length} issue)`;
+      return this.validationEnabled ? `Hide validation ${issueText}` : 'Show validation';
     }
   },
   methods: mapMutations(['toggleValidation'])

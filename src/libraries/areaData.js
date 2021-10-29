@@ -63,6 +63,7 @@ export default class AreaData {
           owner: project.crew,
           ticketId: project.projectId,
           validations: project.validations,
+          aggregatedValidations: [project.validations, project.epics.map(epic => epic.validations).flat()].flat(),
           startDate: project.startDate,
           epicsCount: 0,
           epicsDoneCount: 0,

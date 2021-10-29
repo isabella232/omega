@@ -45,6 +45,15 @@ export default function createStore(router) {
               return calculateAreaData(state.cycleData, epicFilter)[areaId];
             },
 
+            validationSummary(state, getters) {
+              return getters.currentAreaData.objectives.map(objective => {
+                return objective.projects.map(project => {
+                  const epicsValidations = project.epics.map(epic => epic.validations).flat();
+                  return [epicsValidations, project.validations].flat();
+                }).flat();
+              }).flat();
+            },
+
             isOverviewPage(state) {
                 return state.pages.current.id === 'overview'
             }
