@@ -105,7 +105,7 @@ export default class AreaData {
             preparedProject.weeksCancelled += epic.effort
           }
         })
-
+        preparedProject.weeks = this.roundToTwoDigit(preparedProject.weeks);
         preparedProject.progress = Math.round((preparedProject.weeksDone / preparedProject.weeks) * 100) || 0
         preparedProject.progressWithInProgress = Math.round(((preparedProject.weeksDone + preparedProject.weeksInProgress) / preparedProject.weeks) * 100) || 0
         preparedProject.progressByEpics = Math.round((preparedProject.epicsDoneCount / preparedProject.epicsCount) * 100) || 0
@@ -163,5 +163,9 @@ export default class AreaData {
 
   normalize(number) {
     return Math.round(number*10)/10
+  }
+
+  roundToTwoDigit(number) {
+    return Math.round(number * 100) / 100
   }
 }
