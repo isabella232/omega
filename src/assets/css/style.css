@@ -282,6 +282,18 @@ body {
   margin-top: 4px;
 }
 
+.project-popover__epic__release_narrative {
+  color: rgb(64, 135, 126);
+  /*padding: 2px;*/
+  /*margin-top: 4px;*/
+}
+
+.project-popover__epic__warning {
+  color: darkorange;
+  /*padding: 2px;*/
+  /*margin-top: 4px;*/
+}
+
 .epic-container-column__project__title .project-popover__epic__validation {
   margin-top: 0;
   padding: 0;

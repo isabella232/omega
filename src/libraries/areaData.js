@@ -79,7 +79,9 @@ export default class AreaData {
           progressByEpics: 0,
           percentageNotToDo: 0,
           epics: project.epics,
-          url: project.url
+          url: project.url,
+          isPartOfReleaseNarrative: project.isPartOfReleaseNarrative,
+          isReleaseAtRisk: project.isReleaseAtRisk
         }
 
         project.epics.forEach((epic) => {

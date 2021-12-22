@@ -24,6 +24,16 @@
                     <span class="el-icon-s-flag project-popover__epic__validation" @click="showValidation(project)"></span>
                   </el-tooltip>
                 </template>
+                <template v-if="project.isPartOfReleaseNarrative">
+                  <el-tooltip :content="'This item will be presented and/or demoed as part of the next release!'" placement="bottom" effect="dark">
+                    <span class="el-icon-s-promotion project-popover__epic__release_narrative"></span>
+                  </el-tooltip> 
+                </template>
+                <template v-if="project.isReleaseAtRisk">
+                  <el-tooltip :content="'This item might not make it in time for next release!'" placement="bottom" effect="dark">
+                    <span class="el-icon-warning project-popover__epic__warning"></span>
+                  </el-tooltip> 
+                </template>
               </div>
 
               <template v-if="project.weeks === 0">
@@ -60,6 +70,16 @@
                 :key="epic.name + epic.stage"
               >
                 <div class="project-popover__epic__name">
+                  <template v-if="epic.isReleaseAtRisk">
+                    <el-tooltip :content="'This item might not make it in time for next release!'" placement="bottom" effect="dark">
+                      <span class="el-icon-warning project-popover__epic__warning"></span>
+                    </el-tooltip> 
+                  </template>
+                  <template v-if="epic.isPartOfReleaseNarrative">
+                    <el-tooltip :content="'This item will be presented and/or demoed as part of the next release!'" placement="bottom" effect="dark">
+                      <span class="el-icon-s-promotion project-popover__epic__release_narrative"></span>
+                    </el-tooltip> 
+                  </template>
                   <a :href="epic.url" class="jira-link" target="_blank">
                     {{ epic.name }}
                     <i class="el-icon-link"></i>
@@ -98,6 +118,16 @@
                 <el-tooltip :content="'Found ' + project.aggregatedValidations.length + ' issue'" placement="bottom" effect="dark">
                   <span class="el-icon-s-flag project-popover__epic__validation"></span>
                 </el-tooltip>
+              </template>
+              <template v-if="project.isReleaseAtRisk">
+                <el-tooltip :content="'This item might not make it in time for next release!'" placement="bottom" effect="dark">
+                  <span class="el-icon-warning project-popover__epic__warning"></span>
+                </el-tooltip> 
+              </template>
+              <template v-if="project.isPartOfReleaseNarrative">
+                <el-tooltip :content="'This item will be presented and/or demoed as part of the next release!'" placement="bottom" effect="dark">
+                  <span class="el-icon-s-promotion project-popover__epic__release_narrative"></span>
+                </el-tooltip> 
               </template>
               {{ project.name }}
             </div>
