@@ -8,7 +8,7 @@
           <validation-selector></validation-selector>
           <sprint-selector></sprint-selector>
           <stage-selector></stage-selector>
-          <external-selector></external-selector>
+          <release-selector></release-selector>
           <assignee-selector></assignee-selector>
         </el-col>
       </el-row>
@@ -62,7 +62,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex"
-import ExternalSelector from "./ExternalSelector";
+import ReleaseSelector from "./ReleaseSelector";
 import StageSelector from "./StageSelector";
 import SprintSelector from "./SprintSelector";
 import AssigneeSelector from "./AssigneeSelector";
@@ -70,7 +70,9 @@ import ValidationSelector from "./ValidationSelector";
 
 export default {
   name: "Area",
-  components: {ValidationSelector, ExternalSelector, StageSelector, SprintSelector, AssigneeSelector},
+  components: {
+    ValidationSelector, ReleaseSelector, StageSelector, SprintSelector, AssigneeSelector
+  },
   data: () => ({
     dialogOpen: false,
     selectedIssue: null
