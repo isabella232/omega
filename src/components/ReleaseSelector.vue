@@ -12,6 +12,7 @@
         :key="releaseFilter.value" 
         :command="releaseFilter">
         {{ releaseFilter.name }}
+        <i v-bind:class="releaseFilter.style"></i>
       </el-dropdown-item>      
     </el-dropdown-menu>
   </el-dropdown>
