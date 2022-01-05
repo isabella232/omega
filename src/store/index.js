@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import { calculateAreaData } from '../libraries/calculateAreaData'
+import { releaseFilters, defaultReleaseFilter } from '../libraries/releaseFilters'
 
 export default function createStore(router) {
     const store = new Vuex.Store({
@@ -11,7 +12,6 @@ export default function createStore(router) {
                 all: [],
                 current: {}
             },
-            onlyExternal: localStorage.onlyExternal ? JSON.parse(localStorage.onlyExternal) : false,
 
             cycleData: null,
             areaDataset: null,
@@ -21,24 +21,30 @@ export default function createStore(router) {
             selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
             validationEnabled: localStorage.validationEnabled ? JSON.parse(localStorage.validationEnabled) : true,
-            selectedAssignee: localStorage.selectedAssignee ? JSON.parse(localStorage.selectedAssignee) : null
+            selectedAssignee: localStorage.selectedAssignee ? JSON.parse(localStorage.selectedAssignee) : null,
+            
+            releaseFilters: [],
+            selectedReleaseFilter: localStorage.selectedReleaseFilter ? JSON.parse(localStorage.selectedReleaseFilter) : null,
         },
         getters: {
             currentAreaData(state) {
-                if (!state.cycleData) return null;
-                const areaId = state.pages.current.id;
+              if (!state.cycleData) return null;
+              const areaId = state.pages.current.id;
 
-                const predicates = [];
-                if(state.onlyExternal) {
-                  predicates.push((epic) => epic.isExternal);
-                }
-
+              const predicates = [];
+              
               if(state.selectedStage.value !== 'all') {
                 predicates.push((epic) => epic.stage === state.selectedStage.value);
               }
 
               if(state.selectedAssignee.accountId !== 'all') {
                 predicates.push((epic) => epic.assignee && epic.assignee.accountId === state.selectedAssignee.accountId);
+              }
+
+              if(state.selectedReleaseFilter) {
+                const selectedReleaseFilterWithPredicate = state.releaseFilters.find( 
+                  filter => filter.value === state.selectedReleaseFilter.value );
+                predicates.push( selectedReleaseFilterWithPredicate.predicate );
               }
 
               const epicFilter = (epic) => predicates.every((predicate) => predicate(epic));
@@ -75,9 +81,13 @@ export default function createStore(router) {
                 state.error = error
             },
 
-            setOnlyExternal(state, onlyExternal) {
-              localStorage.onlyExternal = onlyExternal;
-              state.onlyExternal = onlyExternal;
+            setReleaseFilters(state, releaseFilters) {
+              state.releaseFilters = releaseFilters
+            },
+
+            setSelectedReleaseFilter(state, selectedReleaseFilter) {
+              localStorage.selectedReleaseFilter = JSON.stringify(selectedReleaseFilter);
+              state.selectedReleaseFilter = selectedReleaseFilter;
             },
 
             setStages(state, stages) {
@@ -193,6 +203,13 @@ export default function createStore(router) {
                     if (!state.selectedAssignee) {
                       commit('setSelectedAssignee', assignees[0]);
                     }
+
+                    commit('setReleaseFilters', releaseFilters);
+
+                    if(!state.selectedReleaseFilter) {
+                      commit('setSelectedReleaseFilter', defaultReleaseFilter); 
+                    }
+
                 } catch (e) {
                     console.error('Error on loading Area data', e)
                     commit('setError', 'Error :(')
