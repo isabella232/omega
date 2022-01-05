@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import { calculateAreaData } from '../libraries/calculateAreaData'
+import { releaseFilters, defaultReleaseFilter } from '../libraries/releaseFilters'
 
 export default function createStore(router) {
     const store = new Vuex.Store({
@@ -203,16 +204,10 @@ export default function createStore(router) {
                       commit('setSelectedAssignee', assignees[0]);
                     }
 
-                    const releaseFilters = [
-                      { value: "all", name: "All Release Items", predicate: (epic) => true },
-                      { value: "external", name: "Public / External Release Items", predicate: (epic) => epic.isExternal },
-                      { value: "part-of-narrative", name: "Part of Release Narrative", predicate: (epic) => epic.isPartOfReleaseNarrative },
-                      { value: "at-risk", name: "Release at Risk", predicate: (epic) => epic.isReleaseAtRisk },
-                    ];
                     commit('setReleaseFilters', releaseFilters);
 
                     if(!state.selectedReleaseFilter) {
-                      commit('setSelectedReleaseFilter', releaseFilters[0]); 
+                      commit('setSelectedReleaseFilter', defaultReleaseFilter); 
                     }
 
                 } catch (e) {
