@@ -42,9 +42,9 @@ export default function createStore(router) {
               }
 
               if(state.selectedReleaseFilter) {
-                const selectedReleaseFilterObj = state.releaseFilters.find( 
+                const selectedReleaseFilterWithPredicate = state.releaseFilters.find( 
                   filter => filter.value === state.selectedReleaseFilter.value );
-                predicates.push( selectedReleaseFilterObj.predicate );
+                predicates.push( selectedReleaseFilterWithPredicate.predicate );
               }
 
               const epicFilter = (epic) => predicates.every((predicate) => predicate(epic));
