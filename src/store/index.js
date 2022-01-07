@@ -32,7 +32,7 @@ export default function createStore(router) {
 
               const predicates = [];
 
-              if(state.selectedStages && state.selectedStages[0].value !== 'all') {
+              if(state.selectedStages && state.selectedStages.length > 0 && state.selectedStages[0].value !== 'all') {
                 const stageValues = state.selectedStages.map(stage => stage.value);
                 predicates.push((epic) => stageValues.includes(epic.stage));
               }
