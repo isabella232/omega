@@ -16,13 +16,12 @@ export default function createStore(router) {
             cycleData: null,
             areaDataset: null,
             stages: [],
-            selectedStage: localStorage.selectedStage ? JSON.parse(localStorage.selectedStage) : null,
+            selectedStages: localStorage.selectedStages ? JSON.parse(localStorage.selectedStages) : null,
             sprints: [],
             selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
             validationEnabled: localStorage.validationEnabled ? JSON.parse(localStorage.validationEnabled) : true,
             selectedAssignee: localStorage.selectedAssignee ? JSON.parse(localStorage.selectedAssignee) : null,
-            
             releaseFilters: [],
             selectedReleaseFilter: localStorage.selectedReleaseFilter ? JSON.parse(localStorage.selectedReleaseFilter) : null,
         },
@@ -32,9 +31,10 @@ export default function createStore(router) {
               const areaId = state.pages.current.id;
 
               const predicates = [];
-              
-              if(state.selectedStage.value !== 'all') {
-                predicates.push((epic) => epic.stage === state.selectedStage.value);
+
+              if(state.selectedStages && state.selectedStages[0].value !== 'all') {
+                const stageValues = state.selectedStages.map(stage => stage.value);
+                predicates.push((epic) => stageValues.includes(epic.stage));
               }
 
               if(state.selectedAssignee.accountId !== 'all') {
@@ -42,7 +42,7 @@ export default function createStore(router) {
               }
 
               if(state.selectedReleaseFilter) {
-                const selectedReleaseFilterWithPredicate = state.releaseFilters.find( 
+                const selectedReleaseFilterWithPredicate = state.releaseFilters.find(
                   filter => filter.value === state.selectedReleaseFilter.value );
                 predicates.push( selectedReleaseFilterWithPredicate.predicate );
               }
@@ -94,9 +94,16 @@ export default function createStore(router) {
               state.stages = stages
             },
 
-            setSelectedStage(state, stage) {
-              localStorage.selectedStage = JSON.stringify(stage);
-              state.selectedStage = stage;
+            setSelectedStages(state, stages) {
+                const isAllStage = (stage) => stage.value === 'all';
+                const stageFilters = stages.filter(stage => !isAllStage(stage));
+                const hasAllStageSelectedBefore = state.selectedStages.some(isAllStage);
+                const hasAllStageNewlyAdded = !hasAllStageSelectedBefore && stageFilters.length !== stages.length;
+                const hasNoRealFilter = stageFilters.length === 0;
+                const normalizedStages = hasNoRealFilter || hasAllStageNewlyAdded ? [state.stages[0]] : stageFilters;
+
+                localStorage.selectedStages = JSON.stringify(normalizedStages);
+                state.selectedStages = normalizedStages;
             },
 
             setCurrentPage(state, pageId) {
@@ -194,8 +201,8 @@ export default function createStore(router) {
                     commit('setSelectedSprint', cycleData.cycle);
                     commit('setStages', stages);
 
-                    if (!state.selectedStage) {
-                      commit('setSelectedStage', stages[0]);
+                    if (!state.selectedStages) {
+                      commit('setSelectedStages', [stages[0]]);
                     }
 
                     commit('setAssignees', assignees);
@@ -207,7 +214,7 @@ export default function createStore(router) {
                     commit('setReleaseFilters', releaseFilters);
 
                     if(!state.selectedReleaseFilter) {
-                      commit('setSelectedReleaseFilter', defaultReleaseFilter); 
+                      commit('setSelectedReleaseFilter', defaultReleaseFilter);
                     }
 
                 } catch (e) {
