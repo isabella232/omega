@@ -201,7 +201,7 @@ export default function createStore(router) {
                     commit('setSelectedSprint', cycleData.cycle);
                     commit('setStages', stages);
 
-                    if (!state.selectedStages) {
+                    if (!state.selectedStages || state.selectedStages.length === 0) {
                       commit('setSelectedStages', [stages[0]]);
                     }
 
