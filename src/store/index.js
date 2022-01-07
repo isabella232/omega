@@ -16,7 +16,7 @@ export default function createStore(router) {
             cycleData: null,
             areaDataset: null,
             stages: [],
-            selectedStages: localStorage.selectedStages ? JSON.parse(localStorage.selectedStages) : null,
+            selectedStages: localStorage.selectedStages ? JSON.parse(localStorage.selectedStages) : [],
             sprints: [],
             selectedSprint: localStorage.selectedSprint ? JSON.parse(localStorage.selectedSprint) : null,
             assignees: [],
