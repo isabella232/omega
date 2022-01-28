@@ -736,7 +736,7 @@ body {
 }
 
 .global-objectives__detail__name {
-    font-size: 18px;
+    font-size: 15px;
     color: #64a0b0;
     margin-top: 1px;
     margin-left: 33px;
@@ -1028,7 +1028,7 @@ body {
 
 .initiative {
   text-overflow: ellipsis;
-  width: calc(100% - 36px);
+  width: calc(100% - 42px);
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
