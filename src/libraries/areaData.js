@@ -41,6 +41,8 @@ export default class AreaData {
     this.objectives = data.objectives.map((objective) => {
       let preparedObjective = {
         name: objective.objective,
+        theme: objective.theme,
+        initiative: objective.initiative,
         epicsCount: 0,
         epicsDoneCount: 0,
         weeks: 0,

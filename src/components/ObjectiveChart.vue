@@ -27,7 +27,13 @@
         <div class="global-objectives__detail" v-for="objective in objectivesWithRelativeValues" :key="objective.name">
           <div class="global-objectives__detail__progress">{{ objective.progress }}%
             <div class="global-objectives__detail__weeks"><strong>{{ objective.weeksDone }}</strong> of {{ objective.weeks }} weeks</div></div>
-          <div class="global-objectives__detail__name">{{ objective.name }}</div>
+          <div class="global-objectives__detail__name" v-if="objective.theme">
+            <span class="theme-pill">{{ objective.theme }}</span>
+            <span class="initiative">{{ objective.initiative }}</span>
+          </div>
+          <div class="global-objectives__detail__name" v-if="!objective.theme">
+            <span class="initiative without-theme">{{ objective.initiative }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -198,7 +204,7 @@ export default {
 
   computed: {
     summarizedObjectives() {
-      const maxObjectivesOnPage = 6;
+      const maxObjectivesOnPage = 8;
       if(this.objectives.length <= maxObjectivesOnPage) {
         return this.objectives
       }
@@ -206,7 +212,13 @@ export default {
       const sortedObjectives = sortObjectives(this.objectives)
       const headObjectives = sortedObjectives.slice(0, maxObjectivesOnPage - 1)
       const tailObjectives = sortedObjectives.slice(maxObjectivesOnPage - 1)
-      const defaultOtherObjective = { name: 'Other Projects', weeks: 0, weeksDone: 0, weeksInProgress: 0 }
+      const defaultOtherObjective = {
+        name: 'Other Projects',
+        initiative: 'Other Projects',
+        weeks: 0,
+        weeksDone: 0,
+        weeksInProgress: 0
+      }
 
       const summarizedOtherObjective = tailObjectives.reduce((acc, obj) => {
         acc.weeks += obj.weeks
@@ -247,6 +259,8 @@ export default {
       let objectives = this.summarizedObjectives.map(objective => {
         return {
           name: objective.name,
+          theme: objective.theme,
+          initiative: objective.initiative,
           weeks: objective.weeks,
           weeksDone: objective.weeksDone,
           progress: objective.progress,
@@ -270,6 +284,8 @@ export default {
 
         return {
           name: objective.name,
+          theme: objective.theme,
+          initiative: objective.initiative,
           weeks: objective.weeks,
           weeksDone: objective.weeksDone,
           progress: objective.progress,

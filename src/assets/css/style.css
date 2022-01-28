@@ -743,7 +743,7 @@ body {
 }
 
 .global-objectives__details-gt4 .global-objectives__detail__name {
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .global-objectives__detail__progress {
@@ -1019,3 +1019,26 @@ body {
   color: #ffffff;
 }
 
+.theme-pill {
+  border: 1px solid #65a0b0;
+  border-radius: 2px;
+  padding: 2px 2px 0 2px;
+  font-size: 12px;
+}
+
+.initiative {
+  text-overflow: ellipsis;
+  width: calc(100% - 36px);
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  margin: -5px 0;
+}
+
+.initiative.without-theme {
+  width: calc(100%);
+}
+
+.initiative:hover {
+  overflow: visible;
+}
